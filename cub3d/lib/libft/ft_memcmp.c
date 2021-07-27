@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kirkim <kirkim@student.42seoul.kr>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 14:59:53 by kirkim            #+#    #+#             */
-/*   Updated: 2020/12/30 02:31:01 by kirkim           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t num)
+int	ft_memcmp(const void *s1, const void *s2, size_t num)
 {
 	const unsigned char	*str1;
-	const unsigned char *str2;
+	const unsigned char	*str2;
 	size_t				i;
 
 	str1 = s1;

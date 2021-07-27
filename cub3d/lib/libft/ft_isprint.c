@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kirkim <kirkim@student.42seoul.kr>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 15:39:24 by kirkim            #+#    #+#             */
-/*   Updated: 2020/12/28 15:39:26 by kirkim           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-int		ft_isprint(int character)
+int	ft_isprint(int character)
 {
 	if (character >= ' ' && character <= '~')
 		return (1);

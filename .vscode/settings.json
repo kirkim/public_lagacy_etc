@@ -9,6 +9,8 @@
 		"locale": "c",
 		"string": "c",
 		"unordered_map": "c",
-		"vector": "c"
+		"vector": "c",
+		"math.h": "c",
+		"__locale": "c"
 	}
 }

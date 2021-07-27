@@ -1,12 +1,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../lib/mlx/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
-//# include "../lib/libft/libft.h"
-//# include "./get_next_line.h"
+# include <unistd.h>
+# include "libft.h"
+# include "mlx.h"
 
 # define PI         (3.14159265358979323846264338327950288)
 # define TWO_PI     (6.28318530717958647692528676655900576)
@@ -44,6 +44,11 @@
 # define SUCCESS	(0)
 # define ERROR		(1)
 # define NO_COLOR	(0xFF00FF)
+
+/* get_next_line */
+# define FT_EOF 	(0)
+# define FT_SUCCESS (1)
+# define FT_FAIL 	(-1)
 
 /* key */
 # define KEY_ESC		(53)
@@ -85,6 +90,15 @@
 # define T_MAP			(17)
 # define TEXTURE_COUNT	(15)
 # define SPRITE_COUNT	(3)
+
+typedef struct s_gnl
+{
+	char		*buf;
+	char		*temp;
+	char		*save[10240];
+	ssize_t		offset;
+	ssize_t		index;
+}				t_gnl;
 
 typedef struct s_point
 {
@@ -303,7 +317,7 @@ void	is_in_room(t_god *god);
 /* key */
 int		key_press(int keycode, t_key *key);
 int		key_release(int keycode, t_key *key);
-int		key_exit(t_god *god);
+int		key_exit(void);
 
 /* init */
 void	init_3D(t_god *god, t_3d *v, int i);
@@ -333,9 +347,11 @@ int		exit_error(t_god *god, int exit_code, const char *message);
 int		free_memory_return(void *memory, int return_code);
 int		set_door(t_god *god, int row, int col);
 void	free_memory(void *memory);
+void	str_free(char *str);
 void	free_array_memory(void **memory, int index);
 void	free_texture_array(t_god *god);
 void	update_mouse(t_god *god);
+int		get_next_line(int fd, char **line);
 
 /* utils */
 int		check_edge(t_god *god, const t_point *p1, const t_point *p2);

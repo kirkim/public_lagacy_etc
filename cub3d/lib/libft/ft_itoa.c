@@ -1,22 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kirkim <kirkim@student.42seoul.kr>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/28 15:26:34 by kirkim            #+#    #+#             */
-/*   Updated: 2020/12/30 15:04:37 by kirkim           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
 static char	*ft_putnum(unsigned int num, size_t *sz)
 {
 	char	*rst;
 
-	if (!(rst = (char *)malloc(sizeof(char) * (*sz + 1))))
+	rst = (char *)malloc(sizeof(char) * (*sz + 1));
+	if (!rst)
 		return (0);
 	rst[*sz] = '\0';
 	while (num)
@@ -28,14 +17,21 @@ static char	*ft_putnum(unsigned int num, size_t *sz)
 	return (rst);
 }
 
-char		*ft_itoa(int n)
+size_t	ter_func(int problem, int true, int false)
+{
+	if (problem == 1)
+		return (true);
+	return (false);
+}
+
+char	*ft_itoa(int n)
 {
 	size_t			size;
 	char			*result;
 	unsigned int	nb;
 
-	size = n > 0 ? 0 : 1;
-	nb = n > 0 ? n : -n;
+	size = ter_func(n > 0, 0, 1);
+	nb = (unsigned int)ter_func(n > 0, n, -n);
 	while (n)
 	{
 		n /= 10;
