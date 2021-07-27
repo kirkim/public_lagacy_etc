@@ -1,22 +1,22 @@
 #include "cub3d.h"
 
-static int check_parse2_type(char *line)
+static int	check_parse2_type(char *line)
 {
-    if (line[0] == 'N' && line[1] == 'R')
+	if (line[0] == 'N' && line[1] == 'R')
 		return (TI_NO);
-    else if (line[0] == 'S' && line[1] == 'R')
+	else if (line[0] == 'S' && line[1] == 'R')
 		return (TI_SO);
-    else if (line[0] == 'W' && line[1] == 'R')
+	else if (line[0] == 'W' && line[1] == 'R')
 		return (TI_WE);
-    else if (line[0] == 'E' && line[1] == 'R')
+	else if (line[0] == 'E' && line[1] == 'R')
 		return (TI_EA);
-    else if (line[0] == 'D' && line[1] == 'O')
+	else if (line[0] == 'D' && line[1] == 'O')
 		return (T_DO);
-    else if (line[0] == 'D' && line[1] == 'C')
+	else if (line[0] == 'D' && line[1] == 'C')
 		return (T_DC);
-    else if (line[0] == 'S' && line[1] == ' ')
+	else if (line[0] == 'S' && line[1] == ' ')
 		return (T_S);
-    else if (line[0] == 'S' && line[1] == 'F')
+	else if (line[0] == 'S' && line[1] == 'F')
 		return (T_SF);
 	else if (line[0] == 'S' && line[1] == 'T')
 		return (T_ST);
@@ -27,7 +27,7 @@ static int check_parse2_type(char *line)
 	return (T_ERROR);
 }
 
-int check_parse_type(char *line)
+int	check_parse_type(char *line)
 {
 	if (line[0] == 'N' && line[1] == 'O')
 		return (T_NO);
@@ -43,7 +43,7 @@ int check_parse_type(char *line)
 		return (T_CEIL);
 	else if (is_map_valid(line))
 		return (T_MAP);
-    else
-        return (check_parse2_type(line));
+	else
+		return (check_parse2_type(line));
 	return (T_ERROR);
 }

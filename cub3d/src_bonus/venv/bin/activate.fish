@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/kimkirim/Desktop/cub3d/ccccccc/mycub3d/src_bonus/venv"
+set -gx VIRTUAL_ENV "/Users/kimkirim/Desktop/kirkim/cub3D/src_bonus/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

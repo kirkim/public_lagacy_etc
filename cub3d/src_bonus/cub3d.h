@@ -22,17 +22,16 @@
 # define RIGHTDOWN_MAP (4)
 
 /* user settings */
-# define ANIMATE_DELAY (4)
+# define ANIMATE_DELAY (3)
 # define MAP_LOCATION (LEFTDOWN_MAP)
 # define MINIMAP_SCALE (0.25)
 # define TILE_SIZE (64)
 # define PLAYER_THICKNESS (6)
 # define WALKSPEED (2.0)
 # define TURNSPEED (1.5 * (PI / 180.0))
-# define UPDOWNSPEED (10)
+# define UPDOWNSPEED (20)
 # define RAY_RANGE (PI / 3.0)
 # define WALL_STRIP_WIDTH (1)
-//# define RAY_COUNT (WINDOW_WIDTH / WALL_STRIP_WIDTH) // It must be bigger than 2 and recommend odd numbers.
 
 # define X_EVENT_KEY_PRESS      (2)
 # define X_EVENT_KEY_release    (3)
@@ -57,6 +56,10 @@
 # define KEY_DOWN	(125)
 # define KEY_1		(18)
 # define KEY_2		(19)
+# define KEY_3		(20)
+# define KEY_4		(21)
+# define KEY_M      (46)
+# define KEY_P      (35)
 # define KEY_SPACEBAR	(49)
 
 /* texture */
@@ -81,6 +84,30 @@
 # define T_MAP (17)
 # define TEXTURE_COUNT (15)  // put the number of xpm files going to use!
 # define SPRITE_COUNT (3)
+
+typedef struct s_point
+{
+	double x;
+	double y;
+}			t_point;
+
+typedef struct s_dpable_update
+{
+	double turn_direction;
+	double walk_direction;
+	double new_x;
+	double new_y;
+	double moveside;
+	int move_step;
+}				t_dpable_update;
+
+typedef struct s_dpable_parse
+{
+	int		fd;
+	char	*line;
+	int		gnl_ret;
+	int		parse_type;
+}				t_dpable_parse;
 
 typedef struct s_door
 {
@@ -160,19 +187,19 @@ typedef struct s_player {
     double x;
     double y;
     int thickness;
-    double rotationAngle;
-    double walkSpeed;
-    double turnSpeed;
+    double rota_angle;
+    double walk_speed;
+    double turn_speed;
     double updown_sight;
 } t_player;
 
 typedef struct s_ray {
     double  ray_angle;
-    int     wall_direction;
-    int     isRay_facingDown;
-    int     isRay_facingUp;
-    int     isRay_facingRight;
-    int     isRay_facingLeft;
+    int     wall_paper;
+    int     facing_down;
+    int     facing_up;
+    int     facing_right;
+    int     facing_left;
 } t_ray;
 
 typedef struct s_rray {
@@ -181,7 +208,6 @@ typedef struct s_rray {
     double  distance;
     double  angle;
     int     hit_vertical;
-    int     wall_direction;
     int     is_door;
 }               t_rray;
 
@@ -190,9 +216,9 @@ typedef struct s_dpable_ray {
     double  yintercept;
     double  xstep;
     double  ystep;
-    int     found_wallHit;
-    double  wall_hitX;
-    double  wall_hitY;
+    int     found_wall_hit;
+    double  wall_hit_x;
+    double  wall_hit_y;
     double  distance;
     int     is_door;
 } t_dpable_ray;
@@ -214,7 +240,16 @@ typedef struct s_key {
     int left_rotation;
     int updown_sight;
     int open_door;
+    int mouse_on;
 } t_key;
+
+typedef struct    s_mouse
+{
+    int x;
+    int y;
+	unsigned int	delay_x;
+	unsigned int	delay_y;
+}   t_mouse;
 
 typedef struct s_god {
     t_player player;
@@ -229,6 +264,7 @@ typedef struct s_god {
     void     *mlx;
     void     *win;
     unsigned int     time;
+    t_mouse    mouse;
 } t_god;
 
 /* render */
@@ -241,7 +277,7 @@ void    render_player(t_god *god);
 /* update */
 void    update_ray(t_god *god);
 void    update_door(t_god *god);
-int     update_player(t_god *god);
+void     update_player(t_god *god);
 void    update_3Dvalue(t_god *god);
 
 /* is valid */
@@ -291,17 +327,23 @@ void    free_array_memory(void **memory, int index);
 int     free_memory_return(void *memory, int return_code);
 void    free_texture_array(t_god *god);
 int     set_door(t_god *god, int row, int col);
+void	update_mouse(t_god *god);
 
 /* utils */
 double  normalize_angle(double angle);
-int     check_edge(t_god *god, double x1, double x2, double y1, double y2);
+int	check_edge(t_god *god, const t_point *p1, const t_point *p2);
 double  distance_between_points(double x1, double y1, double x2, double y2);
 void    cal_distance(t_god *god, t_dpable_ray *hv);
 double  cal_sprite_degree(t_god *god, t_sprite sprite);
+int		ternaries_func(int problem, int true, int false);
+double	ternaries_func2(double problem, double true, double false);
+void    make_even_value(int *num1, int *num2);
+void set_point(t_point *p, double x, double y);
 
 /* texture */
 void	load_texture(t_god *god);
 
 /* sprite */
 void    render_sprite(t_god *god);
+void	change_value(t_sprite *s1, t_sprite *s2);
 #endif
