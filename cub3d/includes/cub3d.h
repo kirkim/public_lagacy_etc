@@ -22,8 +22,6 @@
 # define UPDOWNSPEED		(20)
 # define RAY_RANGE			(FOV_ANGLE)
 # define WALL_STRIP_WIDTH	(1)
-# define WINDOW_WIDTH		(900)
-# define WINDOW_HEIGHT		(600)
 
 /* key event */
 # define X_EVENT_KEY_PRESS		(2)

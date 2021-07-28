@@ -11,8 +11,8 @@ static void	ft_init(t_god *god)
 	god->map.map_rows = god->parse.row;
 	god->map.map_cols = god->parse.col;
 	make_even_value(&god->map.map_rows, &god->map.map_cols);
-	god->map.window_height = WINDOW_HEIGHT * TILE_SIZE;
-	god->map.window_width = WINDOW_WIDTH * TILE_SIZE;
+	god->map.window_height = god->parse.row * TILE_SIZE;
+	god->map.window_width = god->parse.col * TILE_SIZE;
 	god->map.ray_count = god->map.window_width / WALL_STRIP_WIDTH;
 	init_map_malloc(god);
 	god->rray = (t_rray *)malloc(sizeof(t_rray) * (god->map.ray_count));
