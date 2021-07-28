@@ -44,14 +44,3 @@ char	*update_map_malloc(char *s1, char *s2)
 	free_memory(temp);
 	return (result);
 }
-
-int	set_door(t_god *god, int row, int col)
-{
-	if (god->parse.map[row][col - 1] != '1'
-		|| god->parse.map[row][col + 1] != '1')
-		return (ERROR);
-	if (ft_strchr("05", god->parse.map[row - 1][col]) == NULL
-		|| ft_strchr("05", god->parse.map[row + 1][col]) == NULL)
-		return (ERROR);
-	return (SUCCESS);
-}

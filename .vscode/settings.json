@@ -11,6 +11,7 @@
 		"unordered_map": "c",
 		"vector": "c",
 		"math.h": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"mlx.h": "c"
 	}
 }

@@ -11,21 +11,17 @@ void	ray_init(t_ray *ray, double rayAngle)
 
 void	set_wall_diretion(t_god *god, int i)
 {
-	if (god->rray[i].is_door == CLOSE_DOOR)
-		god->ray.wall_paper = T_DO;
-	else if (god->rray[i].is_door == OPEN_DOOR)
-		god->ray.wall_paper = T_DC;
-	else if (god->rray[i].hit_vertical == TRUE
+	if (god->rray[i].hit_vertical == TRUE
 		&& (god->player.x - god->rray[i].wall_hitx) > 0)
-		god->ray.wall_paper = T_WE + god->door.in_room;
+		god->ray.wall_paper = T_WE;
 	else if (god->rray[i].hit_vertical == TRUE
 		&& (god->player.x - god->rray[i].wall_hitx) < 0)
-		god->ray.wall_paper = T_EA + god->door.in_room;
+		god->ray.wall_paper = T_EA;
 	else if (god->rray[i].hit_vertical == FALSE
 		&& (god->player.y - god->rray[i].wall_hity) > 0)
-		god->ray.wall_paper = T_NO + god->door.in_room;
+		god->ray.wall_paper = T_NO;
 	else
-		god->ray.wall_paper = T_SO + god->door.in_room;
+		god->ray.wall_paper = T_SO;
 }
 
 void	init_3D(t_god *god, t_3d *v, int i)
@@ -45,31 +41,6 @@ void	init_3D(t_god *god, t_3d *v, int i)
 	v->correct_bottom = ternaries_func(v->bottom > god->map.window_height,
 			god->map.window_height, v->bottom);
 	v->height = v->bottom - v->top;
-}
-
-void	init_sprite(t_god *god, t_3d *v, t_sprite *sprite)
-{
-	double	sprite_angle;
-
-	sprite->angle = cal_sprite_degree(god, *sprite);
-	v->correct_distance = sprite->distance * cos(sprite->angle);
-	v->distance_plane = (god->map.window_width / 2) / tan(FOV_ANGLE / 2);
-	v->projected_height
-		= (int)((TILE_SIZE / v->correct_distance) * v->distance_plane);
-	v->width = v->projected_height;
-	v->top = (god->map.window_height / 2)
-		- (v->projected_height / 2) - god->player.updown_sight;
-	v->correct_top = ternaries_func(v->top < 0, 0, v->top);
-	v->bottom = (god->map.window_height / 2)
-		+ (v->projected_height / 2) - god->player.updown_sight;
-	v->correct_bottom = ternaries_func(v->bottom > god->map.window_height,
-			god->map.window_height, v->bottom);
-	sprite_angle = atan2(sprite->y - god->player.y, sprite->x - god->player.x)
-		- normalize_angle(god->player.rota_angle);
-	sprite->start = tan(sprite_angle) * v->distance_plane;
-	sprite->left_x = (god->map.window_width / 2)
-		+ sprite->start - (v->width / 2);
-	sprite->right_x = sprite->left_x + v->width;
 }
 
 void	init_map_malloc(t_god *god)

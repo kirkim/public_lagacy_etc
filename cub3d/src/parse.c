@@ -9,6 +9,8 @@ int	parse_color2(int *cf, char **color_malloc)
 	i = -1;
 	while (++i < 3)
 	{
+		if (color_malloc[i] == NULL)
+			return (ERROR);
 		*cf *= 256;
 		x = -1;
 		color = 0;
@@ -18,6 +20,8 @@ int	parse_color2(int *cf, char **color_malloc)
 				return (ERROR);
 			color = color * 10 + color_malloc[i][x] - '0';
 		}
+		if (color > 255 || color < 0)
+			return (ERROR);
 		*cf += color;
 	}
 	return (SUCCESS);

@@ -1,39 +1,5 @@
 #include "cub3d.h"
 
-void	is_in_door(t_god *god)
-{
-	int	row;
-	int	col;
-
-	if (is_door(god, god->player.x, god->player.y) == OPEN_DOOR)
-	{
-		row = -1;
-		while (++row < god->map.window_height)
-		{
-			col = -1;
-			while (++col < god->map.window_width)
-			{
-				if (god->img.data[god->map.window_width * row + col]
-					== NO_COLOR)
-					god->img.data[god->map.window_width * row + col] = 0x000000;
-			}
-		}
-	}
-}
-
-void	is_in_room(t_god *god)
-{
-	int	x;
-	int	y;
-
-	x = (int)floor(god->player.x / TILE_SIZE);
-	y = (int)floor(god->player.y / TILE_SIZE);
-	if (god->map.map[y][x] == '5')
-		god->door.in_room = 4;
-	else
-		god->door.in_room = 0;
-}
-
 int	is_map_valid(char *line)
 {
 	int	i;
@@ -41,7 +7,7 @@ int	is_map_valid(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (find_char("01235NSEWF ", line[i]) == FALSE)
+		if (find_char("01NSEW ", line[i]) == FALSE)
 			return (FALSE);
 		i++;
 	}

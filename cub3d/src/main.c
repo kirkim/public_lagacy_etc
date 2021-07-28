@@ -6,6 +6,19 @@ static void	floor_ceiling_init(t_god *god)
 	god->parse.ceiling_color = NO_COLOR;
 }
 
+void	set_tile(t_god *god)
+{
+	int a;
+	int b;
+
+	a = WINDOW_HEIGHT / god->parse.row;
+	b = WINDOW_WIDTH / god->parse.col;
+	if (a > b)
+		god->map.tile_size = b;
+	else
+		god->map.tile_size = a;
+}
+
 static void	ft_init(t_god *god)
 {
 	god->map.map_rows = god->parse.row;

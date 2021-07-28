@@ -1,14 +1,12 @@
 #include "cub3d.h"
 
-int	draw_sky(t_god *god, int ray_num, int wall_top_pixel, int color)
+int	draw_sky(t_god *god, int ray_num, int wall_top, int color)
 {
 	int	y;
 	int	x;
 
-	if (god->door.in_room)
-		color = 0x843600;
 	y = -1;
-	while (++y < wall_top_pixel)
+	while (++y < wall_top)
 	{
 		x = -1;
 		while (++x < WALL_STRIP_WIDTH)
@@ -20,14 +18,12 @@ int	draw_sky(t_god *god, int ray_num, int wall_top_pixel, int color)
 	return (0);
 }
 
-int	draw_bottom(t_god *god, int ray_num, int wall_bottom_pixel, int color)
+int	draw_bottom(t_god *god, int ray_num, int wall_bottom, int color)
 {
 	int	x;
 	int	y;
 
-	if (god->door.in_room)
-		color = 0x46464f;
-	y = wall_bottom_pixel - 1;
+	y = wall_bottom - 1;
 	while (++y < god->map.window_height)
 	{
 		x = -1;
@@ -48,7 +44,7 @@ int	set_wall_color(t_god *god, t_3d *v, int r, int i)
 
 	set_wall_diretion(god, i);
 	paper = god->ray.wall_paper;
-	if (paper == T_WE || paper == T_EA || paper == TI_WE || paper == TI_EA)
+	if (paper == T_WE || paper == T_EA)
 		col = ((int)god->rray[i].wall_hity % TILE_SIZE)
 			* (god->parse.tex[paper].width / TILE_SIZE);
 	else

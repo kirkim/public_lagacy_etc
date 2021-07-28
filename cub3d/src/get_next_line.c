@@ -57,18 +57,18 @@ static ssize_t	make_line(char **line, char **save, ssize_t index)
 	return (FT_EOF);
 }
 
-void	gnl_tool(t_gnl *g, int fd)
+void	gnl_tool(char **save, t_gnl *g, int fd)
 {
 	while (g->index == FT_FAIL && g->offset > 0)
 	{
 		g->buf[g->offset] = '\0';
-		if (g->save[fd] == NULL)
+		if (*save == NULL)
 			g->temp = ft_strndup(g->buf, g->offset);
 		else
-			g->temp = ft_strjoin(g->save[fd], g->buf);
-		str_free(g->save[fd]);
-		g->save[fd] = g->temp;
-		g->index = find_newline(g->save[fd]);
+			g->temp = ft_strjoin(*save, g->buf);
+		str_free(*save);
+		*save = g->temp;
+		g->index = find_newline(*save);
 		if (g->index == FT_FAIL)
 			g->offset = read(fd, g->buf, 20);
 	}
@@ -77,6 +77,7 @@ void	gnl_tool(t_gnl *g, int fd)
 int	get_next_line(int fd, char **line)
 {
 	t_gnl	g;
+	static char	*save[10240];
 
 	if (fd < 0 || fd > 10240 || line == NULL)
 		return (FT_FAIL);
@@ -85,9 +86,9 @@ int	get_next_line(int fd, char **line)
 		return (FT_FAIL);
 	g.index = FT_FAIL;
 	g.offset = read(fd, g.buf, 20);
-	gnl_tool(&g, fd);
+	gnl_tool(&save[fd], &g, fd);
 	str_free(g.buf);
 	if (g.offset < 0)
 		return (FT_FAIL);
-	return (make_line(line, &g.save[fd], g.index));
+	return (make_line(line, &save[fd], g.index));
 }

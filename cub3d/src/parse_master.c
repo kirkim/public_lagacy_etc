@@ -1,8 +1,8 @@
 #include "cub3d.h"
 
-int	do_parsing(t_parse *parse, int g_ret, int type, char *line)
+static int	do_parsing(t_parse *parse, int g_ret, int type, char *line)
 {
-	if (type >= T_NO && type <= T_SF)
+	if (type >= T_NO && type <= T_EA)
 	{
 		if (parse->tex[type].tex_path)
 			return (free_memory_return(line, ERROR));
@@ -25,6 +25,22 @@ int	do_parsing(t_parse *parse, int g_ret, int type, char *line)
 	return (free_memory_return(line, SUCCESS));
 }
 
+static int	is_blank_line(char *line)
+{
+	int		i;
+
+	if (line[0] == '\0')
+		return (TRUE);
+	i = 0;
+	while (line[i])
+	{
+		if (!is_space(line[i]))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
 int	parse_file(t_god *god, const char *cub_file_path)
 {
 	t_dpable_parse	p;
@@ -38,7 +54,7 @@ int	parse_file(t_god *god, const char *cub_file_path)
 	while (p.gnl_ret > 0)
 	{
 		p.parse_type = check_parse_type(p.line);
-		if (p.line[0] == '\0')
+		if (p.parse_type == T_ERROR && is_blank_line(p.line))
 			free(p.line);
 		else if (p.parse_type == T_ERROR)
 			return (exit_error(god, ERROR, "WRONG PARSE TYPE"));

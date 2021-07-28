@@ -1,19 +1,5 @@
 #include "cub3d.h"
 
-int	is_door(t_god *god, double x, double y)
-{
-	int	xX;
-	int	yY;
-
-	xX = (int)floor(x / TILE_SIZE);
-	yY = (int)floor(y / TILE_SIZE);
-	if (ft_strchr("3", god->map.map[yY][xX]) != NULL)
-		return (CLOSE_DOOR);
-	else if (ft_strchr("4", god->map.map[yY][xX]) != NULL)
-		return (OPEN_DOOR);
-	return (FALSE);
-}
-
 int	is_wall(t_god *god, double x, double y)
 {
 	int	xX;
@@ -24,17 +10,7 @@ int	is_wall(t_god *god, double x, double y)
 		return (TRUE);
 	xX = (int)floor(x / TILE_SIZE);
 	yY = (int)floor(y / TILE_SIZE);
-	return (ft_strchr("02345NSEWF", god->map.map[yY][xX]) == NULL);
-}
-
-int	is_sprite(t_god *god, double x, double y)
-{
-	int	xX;
-	int	yY;
-
-	xX = (int)floor(x / TILE_SIZE);
-	yY = (int)floor(y / TILE_SIZE);
-	return (ft_strchr("2F", god->map.map[yY][xX]) != NULL);
+	return (ft_strchr("0NSEW", god->map.map[yY][xX]) == NULL);
 }
 
 int	is_upper(char c)

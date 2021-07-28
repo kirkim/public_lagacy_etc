@@ -1,18 +1,5 @@
 #include "cub3d.h"
 
-int	key_press2(int keycode, t_key *key)
-{
-	if (keycode == KEY_1)
-		key->open_door = TRUE;
-	if (keycode == KEY_2)
-		key->open_door = FALSE;
-	if (keycode == KEY_3)
-		key->mouse_on = TRUE;
-	if (keycode == KEY_4)
-		key->mouse_on = FALSE;
-	return (0);
-}
-
 int	key_press(int keycode, t_key *key)
 {
 	if (keycode == KEY_A)
@@ -33,7 +20,7 @@ int	key_press(int keycode, t_key *key)
 		key->updown_sight = 1;
 	if (keycode == KEY_ESC)
 		exit(0);
-	return (key_press2(keycode, key));
+	return (0);
 }
 
 int	key_release(int keycode, t_key *key)
@@ -56,10 +43,6 @@ int	key_release(int keycode, t_key *key)
 		key->updown_sight = 0;
 	if (keycode == KEY_ESC)
 		exit(0);
-	if (keycode == KEY_1)
-		key->open_door = 2;
-	if (keycode == KEY_2)
-		key->open_door = 2;
 	return (0);
 }
 

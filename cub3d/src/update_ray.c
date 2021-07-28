@@ -4,17 +4,14 @@ void	cal_ray(t_god *god, t_dpable_ray *hv, int a, int b)
 {
 	double	next_touchX;
 	double	next_touchY;
-	int		door;
 
 	next_touchX = hv->xintercept;
 	next_touchY = hv->yintercept;
-	while (next_touchX >= 0 && next_touchX <= god->map.window_width
-		&& next_touchY >= 0 && next_touchY <= god->map.window_height)
+	while (next_touchX >= 0 && next_touchX <= god->parse.col * TILE_SIZE
+		&& next_touchY >= 0 && next_touchY <= god->parse.row * TILE_SIZE)
 	{
-		door = is_door(god, next_touchX + a, next_touchY + b);
-		if (is_wall(god, next_touchX + a, next_touchY + b) || door != FALSE)
+		if (is_wall(god, next_touchX + a, next_touchY + b))
 		{
-			hv->is_door = door;
 			hv->found_wall_hit = TRUE;
 			hv->wall_hitx = next_touchX;
 			hv->wall_hity = next_touchY;
@@ -73,7 +70,6 @@ void	update_one_ray(t_god *god, double angle, int i)
 	cal_vert_ray(god, &vert);
 	if (vert.distance < horz.distance)
 	{
-		god->rray[i].is_door = vert.is_door;
 		god->rray[i].wall_hitx = vert.wall_hitx;
 		god->rray[i].wall_hity = vert.wall_hity;
 		god->rray[i].distance = vert.distance;
@@ -81,14 +77,11 @@ void	update_one_ray(t_god *god, double angle, int i)
 	}
 	else
 	{
-		god->rray[i].is_door = horz.is_door;
 		god->rray[i].wall_hitx = horz.wall_hitx;
 		god->rray[i].wall_hity = horz.wall_hity;
 		god->rray[i].distance = horz.distance;
 		god->rray[i].hit_vertical = FALSE;
 	}
-	vert.is_door = FALSE;
-	horz.is_door = FALSE;
 	god->rray[i].angle = god->ray.ray_angle;
 }
 

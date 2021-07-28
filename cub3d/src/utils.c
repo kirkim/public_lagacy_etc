@@ -55,16 +55,3 @@ void	cal_distance(t_god *god, t_dpable_ray *hv)
 	else
 		hv->distance = 111111;
 }
-
-double	cal_sprite_degree(t_god *god, t_sprite sprite)
-{
-	double	angle;
-
-	angle = normalize_angle(god->player.rota_angle)
-		- atan2(sprite.y - god->player.y, sprite.x - god->player.x);
-	if (angle > PI)
-		angle -= TWO_PI;
-	else if (angle < -1 * PI)
-		angle += TWO_PI;
-	return (fabs(angle));
-}

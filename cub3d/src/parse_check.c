@@ -1,42 +1,8 @@
 #include "cub3d.h"
 
-static int	put_sprite(t_god *god, int row, int col, int symbol)
-{
-	int	cnt;
-
-	cnt = 0;
-	while (god->sprite[cnt].exist == TRUE)
-	{
-		cnt++;
-		if (cnt >= SPRITE_COUNT)
-			return (ERROR);
-	}
-	god->sprite[cnt].x = col * TILE_SIZE + TILE_SIZE / 2;
-	god->sprite[cnt].y = row * TILE_SIZE + TILE_SIZE / 2;
-	god->sprite[cnt].exist = TRUE;
-	god->sprite[cnt].symbol = symbol;
-	return (SUCCESS);
-}
-
 static int	check_bonus_symbol(t_god *god, int row, int col, int value)
 {
-	if (value == '2')
-	{
-		if (put_sprite(god, row, col, T_S) == ERROR)
-			return (exit_error(god, ERROR, "Too much sprite!"));
-	}
-	else if (value == 'F')
-	{
-		if (put_sprite(god, row, col, T_SF) == ERROR)
-			return (exit_error(god, ERROR, "Too much sprite!"));
-	}
-	else if (value == '3')
-	{
-		if (is_space_around_position(god, row, col)
-			== ERROR || set_door(god, row, col) == ERROR)
-			return (exit_error(god, ERROR, "door error!"));
-	}
-	else if (ft_strchr("05", value) != NULL)
+	if (ft_strchr("0", value) != NULL)
 	{
 		if (is_space_around_position(god, row, col) == ERROR)
 			return (exit_error(god, ERROR, "Empty space next to 0!"));
@@ -66,7 +32,7 @@ static int	check_symbol(t_god *god)
 					return (exit_error(god, ERROR,
 							"Empty space next to NSEW!"));
 			}
-			else if (ft_strchr("2305F", value) != NULL)
+			else if (ft_strchr("0", value) != NULL)
 				if (check_bonus_symbol(god, row, col, value) == ERROR)
 					return (ERROR);
 		}
