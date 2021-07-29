@@ -37,7 +37,7 @@ int	parse_color(int *cf, char *line)
 	while (is_space(*line) == TRUE)
 		line++;
 	color_malloc = ft_split(line, ',');
-	if (color_malloc == NULL)
+	if (color_malloc == NULL || color_malloc[3] != NULL)
 		return (ERROR);
 	if (parse_color2(cf, color_malloc) == ERROR)
 		return (ERROR);

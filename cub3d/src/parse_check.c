@@ -54,7 +54,7 @@ static int	check_type(t_god *god)
 	int	i;
 
 	if (!(god->parse.row) || !(god->parse.col))
-		return (exit_error(god, ERROR, "Row and Col wasn't parsed!"));
+		return (exit_error(god, ERROR, "map error!"));
 	if ((god->parse.ceiling_color == NO_COLOR)
 		|| (god->parse.floor_color == NO_COLOR))
 		return (exit_error(god, ERROR,

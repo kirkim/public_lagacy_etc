@@ -91,7 +91,7 @@
 # define T_CEIL			(16)
 # define T_MAP			(17)
 # define TEXTURE_COUNT	(15)
-# define SPRITE_COUNT	(3)
+# define SPRITE_COUNT	(8)
 
 typedef struct s_gnl
 {
@@ -290,6 +290,7 @@ typedef struct s_god
 	void			*mlx;
 	void			*win;
 	unsigned int	time;
+	int				sprite_cnt;
 	t_mouse			mouse;
 }				t_god;
 

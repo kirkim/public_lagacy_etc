@@ -60,6 +60,10 @@ static int	check_symbol(t_god *god)
 				return (ERROR);
 		}
 	}
+	if (god->parse.is_d != TRUE)
+		return (exit_error(god, ERROR, "no NSEW!"));
+	if (god->sprite_cnt < SPRITE_COUNT)
+		return (exit_error(god, ERROR, "not enough sprites!"));
 	return (SUCCESS);
 }
 
@@ -68,7 +72,7 @@ static int	check_type(t_god *god)
 	int	i;
 
 	if (!(god->parse.row) || !(god->parse.col))
-		return (exit_error(god, ERROR, "Row and Col wasn't parsed!"));
+		return (exit_error(god, ERROR, "map error!"));
 	if ((god->parse.ceiling_color == NO_COLOR)
 		|| (god->parse.floor_color == NO_COLOR))
 		return (exit_error(god, ERROR,
