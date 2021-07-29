@@ -5,9 +5,6 @@ int	is_wall(t_god *god, double x, double y)
 	int	xX;
 	int	yY;
 
-	if (x < 0 || x > god->map.window_width
-		|| y < 0 || y > god->map.window_height)
-		return (TRUE);
 	xX = (int)floor(x / TILE_SIZE);
 	yY = (int)floor(y / TILE_SIZE);
 	return (ft_strchr("0NSEW", god->map.map[yY][xX]) == NULL);

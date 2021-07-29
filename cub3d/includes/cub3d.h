@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include "libft.h"
 # include "mlx.h"
+# include <stdio.h>
 
 # define PI         (3.14159265358979323846264338327950288)
 # define TWO_PI     (6.28318530717958647692528676655900576)
@@ -22,6 +23,8 @@
 # define UPDOWNSPEED		(20)
 # define RAY_RANGE			(FOV_ANGLE)
 # define WALL_STRIP_WIDTH	(1)
+# define W_WIDTH			(16)
+# define W_HEIGHT			(10)
 
 /* key event */
 # define X_EVENT_KEY_PRESS		(2)
@@ -128,6 +131,9 @@ typedef struct s_texture
 
 typedef struct s_parse
 {
+	int			is_d;
+	int			is_f;
+	int			is_c;
 	int			floor_color;
 	int			ceiling_color;
 	int			row;
@@ -263,6 +269,7 @@ int		parse_color(int *cf, char *line);
 int		parse_map(t_parse *parse);
 char	*parse_path_malloc(char *line);
 char	*update_map_malloc(char *s1, char *s2);
+int		check_tex(t_god *god);
 
 /* etc */
 int		exit_error(t_god *god, int exit_code, const char *message);

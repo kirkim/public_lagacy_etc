@@ -10,22 +10,21 @@ void	setting_map_location(t_parse *parse, int *x, int *y, t_point *p)
 	else if (MAP_LOCATION == LEFTDOWN_MAP)
 	{
 		*x = (int)(MINIMAP_SCALE * p->x);
-		*y = (int)((1 - MINIMAP_SCALE) * TILE_SIZE
-				* parse->row + MINIMAP_SCALE * p->y);
+		*y = (int)((W_HEIGHT - MINIMAP_SCALE
+					* parse->row) * TILE_SIZE + MINIMAP_SCALE * p->y);
 	}
-
 	else if (MAP_LOCATION == RIGHTUP_MAP)
 	{
-		*x = (int)((1 - MINIMAP_SCALE) * TILE_SIZE
-				* parse->col + MINIMAP_SCALE * p->x);
+		*x = (int)((W_WIDTH - MINIMAP_SCALE * parse->col) * TILE_SIZE
+				 + MINIMAP_SCALE * p->x);
 		*y = (int)(MINIMAP_SCALE * p->y);
 	}
 	else if (MAP_LOCATION == RIGHTDOWN_MAP)
 	{
-		*x = (int)((1 - MINIMAP_SCALE) * TILE_SIZE
-				* parse->col + MINIMAP_SCALE * p->x);
-		*y = (int)((1 - MINIMAP_SCALE) * TILE_SIZE
-				* parse->row + MINIMAP_SCALE * p->y);
+		*x = (int)((W_WIDTH - MINIMAP_SCALE * parse->col) * TILE_SIZE
+				 + MINIMAP_SCALE * p->x);
+		*y = (int)((W_HEIGHT - MINIMAP_SCALE
+					* parse->row) * TILE_SIZE + MINIMAP_SCALE * p->y);
 	}
 }
 
@@ -38,10 +37,10 @@ void	fill_squares(t_god *god, int x, int y, int color)
 	set_point(&p, x, y);
 	setting_map_location(&god->parse, &x, &y, &p);
 	j = -1;
-	while (++j < (int)(MINIMAP_SCALE * TILE_SIZE))
+	while (++j <= (int)(MINIMAP_SCALE * TILE_SIZE))
 	{
 		i = -1;
-		while (++i < (int)(MINIMAP_SCALE * TILE_SIZE))
+		while (++i <= (int)(MINIMAP_SCALE * TILE_SIZE))
 			god->img.data[god->map.window_width * (y + j) + (x + i)] = color;
 	}
 }

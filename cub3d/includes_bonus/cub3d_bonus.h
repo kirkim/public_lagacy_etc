@@ -22,7 +22,7 @@
 /* user settings */
 # define ANIMATE_DELAY		(3)
 # define MAP_LOCATION		(RIGHTDOWN_MAP)
-# define MINIMAP_SCALE		(0.25)
+# define MINIMAP_SCALE		(0.1)
 # define TILE_SIZE			(64)
 # define PLAYER_THICKNESS	(6)
 # define WALKSPEED			(2.0)
@@ -30,8 +30,8 @@
 # define UPDOWNSPEED		(20)
 # define RAY_RANGE			(FOV_ANGLE)
 # define WALL_STRIP_WIDTH	(1)
-# define WINDOW_WIDTH		(20)
-# define WINDOW_HEIGHT		(14)
+# define W_WIDTH			(16)
+# define W_HEIGHT			(10)
 
 /* key event */
 # define X_EVENT_KEY_PRESS		(2)
@@ -179,6 +179,9 @@ typedef struct s_texture
 
 typedef struct s_parse
 {
+	int			is_d;
+	int			is_f;
+	int			is_c;
 	int			floor_color;
 	int			ceiling_color;
 	int			row;
@@ -342,6 +345,8 @@ int		parse_color(int *cf, char *line);
 int		parse_map(t_parse *parse);
 char	*parse_path_malloc(char *line);
 char	*update_map_malloc(char *s1, char *s2);
+int		check_tex(t_god *god);
+int		put_sprite(t_god *god, int row, int col, int symbol);
 
 /* etc */
 int		exit_error(t_god *god, int exit_code, const char *message);

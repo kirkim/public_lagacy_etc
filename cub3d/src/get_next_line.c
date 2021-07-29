@@ -76,7 +76,7 @@ void	gnl_tool(char **save, t_gnl *g, int fd)
 
 int	get_next_line(int fd, char **line)
 {
-	t_gnl	g;
+	t_gnl		g;
 	static char	*save[10240];
 
 	if (fd < 0 || fd > 10240 || line == NULL)

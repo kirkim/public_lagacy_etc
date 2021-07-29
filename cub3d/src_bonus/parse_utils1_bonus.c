@@ -55,3 +55,23 @@ int	set_door(t_god *god, int row, int col)
 		return (ERROR);
 	return (SUCCESS);
 }
+
+int	check_tex(t_god *god)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i <= T_WE)
+	{
+		j = i;
+		while (++j <= T_EA)
+		{
+			if (ft_strncmp(god->parse.tex[i].tex_path,
+					god->parse.tex[j].tex_path,
+					ft_strlen(god->parse.tex[i].tex_path)) == 0)
+				return (ERROR);
+		}
+	}
+	return (SUCCESS);
+}

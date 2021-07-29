@@ -47,3 +47,23 @@ int	check_parse_type(char *line)
 		return (check_parse2_type(line));
 	return (T_ERROR);
 }
+
+int	put_sprite(t_god *god, int row, int col, int symbol)
+{
+	int	cnt;
+
+	cnt = 0;
+	if (is_space_around_position(god, row, col) == ERROR)
+		return (exit_error(god, ERROR, "space around sprite!"));
+	while (god->sprite[cnt].exist == TRUE)
+	{
+		cnt++;
+		if (cnt >= SPRITE_COUNT)
+			return (exit_error(god, ERROR, "Too much sprite!"));
+	}
+	god->sprite[cnt].x = col * TILE_SIZE + TILE_SIZE / 2;
+	god->sprite[cnt].y = row * TILE_SIZE + TILE_SIZE / 2;
+	god->sprite[cnt].exist = TRUE;
+	god->sprite[cnt].symbol = symbol;
+	return (SUCCESS);
+}

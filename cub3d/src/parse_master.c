@@ -1,5 +1,24 @@
 #include "cub3d.h"
 
+static int	check_col(int type, t_parse *parse, char *line)
+{
+	if (type == T_CEIL)
+	{
+		if (parse->is_c == TRUE || parse_color(&parse->ceiling_color, line)
+			== ERROR)
+			return (ERROR);
+		parse->is_c = TRUE;
+	}
+	else if (type == T_FLOOR)
+	{
+		if (parse->is_f == TRUE || parse_color(&parse->floor_color, line)
+			== ERROR)
+			return (ERROR);
+		parse->is_f = TRUE;
+	}
+	return (SUCCESS);
+}
+
 static int	do_parsing(t_parse *parse, int g_ret, int type, char *line)
 {
 	if (type >= T_NO && type <= T_EA)
@@ -10,10 +29,7 @@ static int	do_parsing(t_parse *parse, int g_ret, int type, char *line)
 	}
 	else if (type == T_CEIL || type == T_FLOOR)
 	{
-		if ((type == T_CEIL && (parse_color(&parse->ceiling_color, line))
-				== ERROR)
-			|| (type == T_FLOOR && (parse_color(&parse->floor_color, line))
-				== ERROR))
+		if (check_col(type, parse, line) == ERROR)
 			return (free_memory_return(line, ERROR));
 	}
 	else
