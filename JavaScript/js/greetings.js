@@ -1,4 +1,3 @@
-/*
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
 const greeting = document.querySelector("#greeting");
@@ -7,16 +6,15 @@ const HIDDEN_CLASSNAME = "hidden";
 const USERNAME_KEY = "username";
 
 function onLoginSubmit(event) {
-	//event.preventDefault();
-	console.log("asa");
+	event.preventDefault();
 	loginForm.classList.add(HIDDEN_CLASSNAME);
 	const username = loginInput.value;
 	localStorage.setItem(USERNAME_KEY, username);
-	paintGreetings(username);
+	paintGreeting(username);
 }
 
-function paintGreetings(username) {
-	greeting.innerText = `Hello ${username}!`;
+function paintGreeting(username) {
+	greeting.innerText = `Hello ${username}`;
 	greeting.classList.remove(HIDDEN_CLASSNAME);
 }
 
@@ -26,15 +24,5 @@ if (savedUsername === null) {
 	loginForm.classList.remove(HIDDEN_CLASSNAME);
 	loginForm.addEventListener("submit", onLoginSubmit);
 } else {
-	paintGreetings(savedUsername);
+	paintGreeting(savedUsername);
 }
-*/
-const loginForm = document.querySelector("#login-form");
-const loginInput = document.querySelector("#login-form input");
-
-function onLoginSubmit(event) {
-	event.preventDefault();
-	console.dir(event);
-}
-
-loginForm.addEventListener("submit", onLoginSubmit);
