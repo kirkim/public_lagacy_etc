@@ -1,17 +1,22 @@
 // Q1. make a string out of an array
 {
-	const fruits = ['apple', 'banana', 'orange'];
-	let result;
-	result = fruits.join();
-	console.log(result);
+	const animals = ["monkey", "hen", "dog"];
+	const result1 = animals.join();
+	const result2 = animals.join(" & ");
+
+	console.log(result1);
+	console.log(result2);
 }
 
 // Q2. make an array out of a string
 {
 	console.clear();
-	const fruits = '🍎, 🥝, 🍌, 🍒';
-	const result = fruits.split(", ");
-	console.log(result);
+	const animals = "monkey, hen, dog";
+	const result1 = animals.split();
+	const result2 = animals.split(", ");
+
+	console.log(result1);
+	console.log(result2);
 }
 
 8// Q3. make this array look like this: [5, 4, 3, 2, 1]
@@ -22,6 +27,44 @@
 	console.log(array);
 }
 
+{
+	console.clear();
+	const array = [1, 2, 3, 4, 5];
+	const array2 = [];
+	Object.assign(array2, array);
+	console.log(array);
+	console.log(array2); // [3, 4, 5]
+}
+{
+	console.clear();
+	function solution1()
+	{
+	    const array = [1, 2, 3, 4, 5];
+	    array.shift();
+	    array.shift();
+	    console.log(array); // [3, 4, 5]
+	}
+
+	function solution2()
+	{
+		const array = [1, 2, 3, 4, 5];
+		const result = array.slice(2);
+	    console.log(array);   // [1, 2, 3, 4, 5]
+	    console.log(result);   // [3, 4, 5]
+	}
+
+	function solution3()
+	{
+	    const array = [1, 2, 3, 4, 5];
+	    const result = array.splice(2, 3, "a");
+	    console.log(array);   // [1, 2, a]
+	    console.log(result);  // [3, 4, 5]
+	}
+	solution1();
+	solution2();
+	solution3();
+}
+
 // Q4. make new array without the first two elements
 {
 	console.clear();
@@ -30,8 +73,21 @@
 	Object.assign(array2, array);
 	array2.shift();
 	array2.shift();
-	console.log(array2);
+	console.log(array2); // [3, 4, 5]
+
+	const array3 = [1, 2, 3, 4, 5];
+	const result = array3.slice(2);
+	console.log("--slice--");
+	console.log(array3);   // [1, 2, 3, 4, 5]
+	console.log(result);   // [3, 4, 5]
+
+	console.log("--slice--");
+	const array4 = [1, 2, 3, 4, 5];
+	const result2 = array4.splice(2, 3, "a");
+	console.log(array4);   // [1, 2, a]
+	console.log(result2);  // [3, 4, 5]
 }
+
 
 class Student {
 	constructor(name, age, enrolled, score) {
@@ -68,10 +124,10 @@ const students = [
 // result should be: [45, 80, 90, 66, 88]
 {
 	console.clear();
-	/*
-	const result = [];
-	students.forEach((student) => result.push(student.score));
-	console.log(result);*/
+
+	//const result = [];
+	//students.forEach((student) => result.push(student.score));
+	//console.log(result);
 	const result = students.map((student) => student.score);
 	console.log(result);
 }
@@ -79,10 +135,10 @@ const students = [
 // Q8. check if there is a student with the score lower than 50
 {
 	console.clear();
-	/*
-	let result;
-	result = students.filter((student) => student.score < 50);
-	console.log(result);*/
+
+	//let result;
+	//result = students.filter((student) => student.score < 50);
+	//console.log(result);
 	const result = students.some((student) => student.score < 50);
 	//const result = !students.every((student) => student.score >= 50);
 	console.log(result);
@@ -92,10 +148,10 @@ const students = [
 {
 	console.clear();
 
-/*	let result = 0;
-	students.forEach((student) => result += student.score);
-	result = result / (students.length);
-	console.log(result);*/
+	//let result = 0;
+	//students.forEach((student) => result += student.score);
+	//result = result / (students.length);
+	//console.log(result);
 	let result = students.reduce((prev, student) => prev + student.score, 0);
 	result = result / students.length;
 	console.log(result);
@@ -105,14 +161,20 @@ const students = [
 // result should be: '45, 80, 90, 66, 88'
 {
 	console.clear();
-	const result = students.map((student) => student.score).join(", ");
+	const result = students
+		.map((student) => student.score)
+		.join(", ");
 	console.log(result);
 }
-
+/*
 // Bonus! do Q10 sorted in ascending order
 // result should be: '45, 66, 80, 88, 90'
 {
 	console.clear();
-	const result = students.map((student) => student.score).sort().join(", ");
+	const result = students
+		.map((student) => student.score)
+		.sort()
+		.join(", ");
 	console.log(result);
 }
+*/
