@@ -1,0 +1,50 @@
+.shoppinglist {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: 50vh;
+  background-color: darkgrey;
+}
+.top {
+  font-size: 4vh;
+  text-align: center;
+  color: white;
+  background-color: cornflowerblue;
+  flex-basis: 15%;
+}
+.list {
+  overflow-y: scroll;
+  flex-basis: 80%;
+}
+.bottom {
+  width: 50vw;
+  background-color: cornflowerblue;
+  text-align: center;
+  flex-basis: 10%;
+}
+.inputitem {
+  width: 49vw;
+  padding: 0px;
+  border-width: 0px;
+}
+
+.bottom button {
+  width: 7vh;
+  height: 7vh;
+  border-radius: 3.5vw;
+  color: white;
+  font-size: 5vh;
+  background-color: darkgreen;
+  border: 2px solid yellowgreen;
+  cursor: pointer;
+  margin: 3px 0px;
+}
+
+.item span {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.item span:hover {
+  background-color: rgb(255, 208, 0);
+}
