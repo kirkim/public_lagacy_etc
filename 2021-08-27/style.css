@@ -1,0 +1,21 @@
+body {
+  font-family: sans-serif;
+  height: 100vh;
+  color: white;
+}
+
+.w1 {
+  background-color: red;
+}
+.w2 {
+  background-color: blue;
+}
+.w3 {
+  background-color: orange;
+}
+.w4 {
+  background-color: green;
+}
+.w5 {
+  background-color: skyblue;
+}
