@@ -1,0 +1,125 @@
+:root {
+  /* color */
+  --color-black: #3f454d;
+  --color-white: #ffffff;
+  --color-blue: #3b88c3;
+  --color-yellow: #fbbe28;
+  --color-pink: #fd7f84;
+  --color-light-grey: #dfdfdf;
+
+  /* size */
+  --base-space: 8px;
+  --size-border: 40px;
+  --size-button: 50px;
+
+  /* annimation */
+  --annimation-duration: 300ms;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.bg {
+  position: absolute;
+  border-radius: var(--size-border);
+  background-image: url("./img/background.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 890px;
+  height: 500px;
+  margin-top: 5%;
+}
+.gameBtn {
+  position: absolute;
+  left: 45%;
+  display: flex;
+  margin-top: var(--base-space);
+  background-color: rgb(203, 203, 221);
+  border: 5px solid black;
+  border-radius: 10px;
+  width: var(--size-button);
+  height: var(--size-button);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.gameBtn .stop {
+  background-color: black;
+  font-size: 0px;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+}
+.gameBtn .play {
+  padding-top: 3px;
+  font-size: 40px;
+}
+
+.timer {
+  position: relative;
+  top: 13%;
+  left: 40%;
+  margin-top: var(--base-space);
+  background-color: rgb(254, 254, 255);
+  border: 4px solid black;
+  border-radius: 10px;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  font-size: 35px;
+}
+.count {
+  position: relative;
+  top: 13%;
+  left: 45%;
+  color: white;
+  text-align: center;
+  padding-top: 4px;
+  font-size: 45px;
+  margin-top: var(--base-space);
+  background-color: rgb(61, 146, 61);
+  border: 3px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.popup {
+  position: absolute;
+  top: 370px;
+  width: 350px;
+  height: 120px;
+  background-color: rgba(0, 0, 0, 0.425);
+  border-radius: 25px;
+}
+
+.popup .popBtn {
+  position: relative;
+  left: 40%;
+  background-color: rgb(236, 212, 179);
+  width: var(--size-button);
+  height: var(--size-button);
+  padding-top: 3px;
+  font-size: 35px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-top: 8px;
+  padding-left: 10px;
+  border: 3px solid black;
+  cursor: pointer;
+}
+
+.popup .message {
+  position: relative;
+  left: 30%;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 40px;
+}
