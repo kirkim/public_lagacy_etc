@@ -4,7 +4,7 @@ const gameForm = document.querySelector(".form");
 const yc = document.querySelector(".youchose");
 const mc = document.querySelector(".machinechose");
 const rs = document.querySelector(".result");
-const ot = document.querySelector(".out");
+const ot = document.querySelector("#out");
 
 function printResult() {
 	if(yc.textContent === mc.textContent) {

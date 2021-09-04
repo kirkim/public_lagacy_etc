@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="clock.css" />
+	<title>Christmas Clock!</title>
+</head>
+<body class="Christmas">
+	<h1>🎄Time Until Christmas Eve🎄</h1>
+	<h2 id="abc"></h2>
+	<script>
+		const abcResult = document.querySelector("#abc");
+
+		function makeString(count) {
+		let result;
+
+		while (count-- > 0) {
+			const value = Math.ceil(Math.random() * 100);
+			if (result === undefined) {
+				result = `${value}`;
+			} else {
+				result = `${result} ${value}`;
+			}
+		}
+		return result;
+		}
+
+		function printRandom(count) {
+			if (count <= 0)
+				return ;
+			abcResult.innerText = makeString(count);
+		}
+
+		printRandom(10);
+	</script>
+</body>
+</html>

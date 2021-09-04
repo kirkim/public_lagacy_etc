@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css" />
+	<script type="module" src="src/page.js"></script>
+	<title>Final assignment</title>
+</head>
+<body>
+	<form class="login">
+		<input class="login__id" required maxlength="15" type="text" placeholder="ID: 1111" />
+		<input class="login__pw" required maxlength="15" type="password" autocomplete="off" placeholder="PW: 1111" />
+		<input type="submit" value="Log In" />
+	</form>
+	<section class="main hidden">
+		<article class="clock">
+			<span class="clock__text"></span>
+			<div class="clock__button">
+				<input type="checkbox" id="toggle" />
+				<label for="toggle"></label>
+			</div>
+		</article>
+		<button class="logout">logout</button>
+		<form class="todo">
+			<input class="todo__input" required maxlength="40" type="text" placeholder="todo" />
+			<ol class="todo__output"></ol>
+		</form>
+		<form class="todo2">
+			<input class="todo__input" required maxlength="40" type="text" placeholder="todo" />
+			<ol class="todo__output"></ol>
+		</form>
+	</section>
+</body>
+</html>
