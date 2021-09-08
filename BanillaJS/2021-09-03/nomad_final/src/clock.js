@@ -13,11 +13,11 @@ export default class Clock {
 		let ap = "AM";
 		let aphours = hours;
 
-		if(hours === "00") {
+		if(Number(hours) === 0) {
 			aphours = 12;
-		} else if(hours >= 12) {
+		} else if(Number(hours) >= 12) {
 			ap = "PM";
-			if(hours !== 12) {
+			if(Number(hours) !== 12) {
 				aphours = hours - 12;
 			}
 		}

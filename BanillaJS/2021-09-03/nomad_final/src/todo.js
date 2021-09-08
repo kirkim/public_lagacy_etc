@@ -1,12 +1,24 @@
 export default class Todo {
-	constructor(todoForm, code) {
+	constructor(todoForm, code, title) {
+		this.title = title;
 		this.todoForm = todoForm;
+		this.makeHtml();
 		this.todoInput = this.todoForm.querySelector(".todo__input");
 		this.todoOutput = this.todoForm.querySelector(".todo__output");
 		this.savedTodo = [];
 		this.TODO_KEY = `todo${code}`;
-		this.todoForm.addEventListener("submit", this.handle)
+		this.todoForm.addEventListener("submit", this.handle);
 		this.loadData();
+	}
+
+	makeHtml() {
+		const temp = document.createElement("span");
+		temp.textContent = this.title;
+		this.todoForm.innerHTML = `
+			<input class="todo__input" required maxlength="40" type="text" placeholder="todo" />
+			<span class="todo__title">${temp.innerHTML}</span>
+			<ol class="todo__output"></ol>
+		`;
 	}
 
 	deleteList = (event) => {
@@ -47,10 +59,15 @@ export default class Todo {
 		const todoList = {
 			todo: this.todoInput.value,
 			id: Date.now(),
+			is_done: false,
 		}
 		this.todoInput.value = "";
 		this.savedTodo.push(todoList);
 		this.printData(todoList);
-		this.saveData(todoList);
+		this.saveData();
 	}
+
+
 }
+
+
