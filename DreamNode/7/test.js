@@ -18,7 +18,7 @@ const duplicated = path.join(workingDir, 'duplicated');
 !fs.existsSync(captured) && fs.mkdirSync(captured);
 !fs.existsSync(duplicated) && fs.mkdirSync(duplicated);
 
-fs.promises.readdir(workingDir, (err, files) => {
+fs.readdir(workingDir, (err, files) => {
 	if(err) {
 		throw err;
 	}
@@ -35,6 +35,7 @@ fs.promises.readdir(workingDir, (err, files) => {
 			mainPath = 'duplicated';
 		}
 		if (mainPath) {
+			console.info(`move ${file} to ${path.basename(mainPath)}`);
 			fs.rename(path.join(workingDir, file), path.join(workingDir, mainPath, file), (err) => {
 				if (err ===undefined || err == null) {
 					/* 오류 처리 */
