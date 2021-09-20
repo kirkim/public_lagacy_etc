@@ -1,23 +1,25 @@
 {
   "name": "practice",
   "version": "1.0.0",
-  "description": "",
+  "description": "hi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec babel-node ./src/server.js"
+  },
+  "keywords": [
+    "hi"
+  ],
+  "author": "kim",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
     "@babel/preset-env": "^7.15.6"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node src/server.js"
-  },
-  "keywords": [
-    "kim"
-  ],
-  "author": "kim",
-  "license": "ISC"
+  }
 }

@@ -1,40 +1,16 @@
-import express from "express"
+import express from "express";
+import morgan from "morgan";
+import globalRouter from './routers/globalRouter';
+import storyRouter from './routers/storyRouter';
+import userRouter from './routers/userRouter';
 
-const PORT = 4000;
+
 const app = express();
+const logger = morgan("dev");
+const PORT = 4000;
 
-const viewURL = (req, res, next) => {
-	console.log(`Path: ${req.url}`);
-	next();
-}
-
-const viewTime = (req, res, next) => {
-	const now = new Date();
-	console.log(`Time: ${now.getFullYear()}.${now.getMonth()}.${now.getDate()}`);
-	next();
-}
-
-const checkSecurity = (req, res, next) => {
-	let mark;
-	mark = req.protocol === 'https' ? '⭕️' : '❌';
-	console.log(`Insecure ${mark}`);
-	next();
-}
-
-const checkProtected = (req, res, next) => {
-	if (req.url === '/protected') {
-		return res.send("<h1>Not Allowed</h1>");
-	}
-	next();
-}
-
-const endWare = (req, res) => {
-	return res.send("<h1>Welcome Home!</h1>");
-}
-
-app.use(viewURL);
-app.use(viewTime);
-app.use(checkSecurity);
-app.use(checkProtected);
-app.get("/", endWare);
-app.listen(PORT, () => console.log(`success conect server http://localhost:${PORT} 🌈`));
+app.use(logger);
+app.use("/", globalRouter);
+app.use("/users", userRouter);
+app.use("/stories", storyRouter);
+app.listen(PORT, () => console.log(`connect http://localhost:${PORT} 🤡`));
