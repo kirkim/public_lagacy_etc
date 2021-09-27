@@ -1,11 +1,37 @@
-const colors = ["#1abc9c", "#3498db", "#9b59b6", "#f39c12", "#e74c3c"];
-const h2 = document.querySelector("h2");
+/* 서버 구동 */
+const express = require("express");
+const PORT = 8080;
+server = express();
+server.use(express.urlencoded({ extended: true })); // input body 읽기용
+server.listen(PORT, () =>
+  console.log(`success connect server! http://localhost:${PORT}`)
+);
 
-const superEventHandler = {
-  handlerClick: function handlerClick() {
-    h2.innerText = "Mouse is here";
-    h2.style.color = colors[0]; // 위에 colors array가져다 쓸라고 이렇게 했는데 왜 에러가 날까요?
-  },
-};
+/* morgan이용 */
+const morgan = require("morgan");
+const logger = morgan("dev");
+server.use(logger);
 
-h2.addEventListener("mouseenter", superEventHandler.handlerClick);
+/* get요청처리 */
+server.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
+server.get("/purchase/complete", (req, res) =>
+  res.sendFile(__dirname + "/purchaseDone.html")
+);
+server.get("/purchase", (req, res) => res.sendFile(__dirname + "/purchase.html"));
+
+/////////////////////////// 위에 무시해도 됨 ////////////////////////////////////
+
+/* post요청처리 */
+const fakeDB = [];
+
+server.post("/purchase", (req, res) => {
+  const id = new Date().getTime();
+  const product = req.body;
+  fakeDB.push({ id, product });
+  console.log(fakeDB);
+  return res.redirect("/purchase/complete");
+});
+
+//return res.sendFile(__dirname + "/purchase.html");
+//return res.sendFile(__dirname + "/purchaseDone.html");
+//return res.redirect("/purchase/complete");
