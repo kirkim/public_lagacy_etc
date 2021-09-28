@@ -5,7 +5,7 @@ import {
   postEdit,
   getUpload,
   postUpload,
-} from "../controllers/videoControllers";
+} from "../controllers/videoControllers_before_mogoDB";
 
 const videoRouter = express.Router();
 
