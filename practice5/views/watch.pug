@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+	div
+		p=video.summary
+		small=video.year
+	a(href=`${video.id}/edit`) Edit Video &rarr;
+	br
+	a(href=`${video.id}/delete`) Delete Video &rarr;
