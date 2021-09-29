@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+	h2 title: #{video.title}
+	hr
+	h4="[text]"
+		p=video.text
+	hr
+	h4
+		a(href=`/videos/${video.id}/edit`)="Edit"
+	h4
+		a(href=`/videos/${video.id}/delete`)="Delete"
