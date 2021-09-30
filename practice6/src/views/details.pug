@@ -1,10 +1,10 @@
 extends layout.pug
 
 block content
-	h2 title: #{video.title}
+	h2 제목: #{video.title}
 	hr
-	h4="[text]"
-		p=video.text
+	h5="[본문]"
+	p=video.text
 	hr
 	h4
 		a(href=`/videos/${video.id}/edit`)="Edit"

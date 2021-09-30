@@ -1,8 +1,7 @@
 extends layout.pug
 
 block content
-	if errorMessage
-		span=errorMessage
+	h2 Video 편집
 	form(method="POST")
 		input(placeholder="Title", required, type="text", name="title")
 		input(placeholder="Text",class="upload__text" required, type="text", name="text")
