@@ -30,7 +30,7 @@ export const getEdit = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id);
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Video not found." });
   }
   return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
 };
@@ -41,7 +41,7 @@ export const postEdit = async (req, res) => {
   //const video = await Video.findById(id);
   const video = await Video.exists({ _id: id }); // video 오브젝트가 필요없고 boolean만 알면되므로 exists()를 이용하여 존제하는지만 알아본다
   if (!video) {
-    return res.render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Video not found." });
   }
   await Video.findByIdAndUpdate(id, {
     title,
@@ -84,7 +84,7 @@ export const postUpload = async (req, res) => {
       hashtags: Video.formatHashtags(hashtags),
     });
   } catch (error) {
-    return res.render("upload", {
+    return res.status(400).render("upload", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
     });
