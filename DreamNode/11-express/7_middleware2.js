@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express from "express";
 import morgan from "morgan";
 import postRouter from "./5_routers/post.js";
 import userRouter from "./5_routers/user.js";
@@ -24,7 +24,7 @@ app.get("/cookies", (req, res) => {
 //
 // 2️⃣ helmet
 // Network-Header에 보안에 관련된 헤더들을 추가해준다.
-//
+// github페이지 참고하자
 import helmet from "helmet";
 app.use(helmet());
 //

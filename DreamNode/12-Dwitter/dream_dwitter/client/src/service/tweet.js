@@ -4,28 +4,28 @@ export default class TweetService {
   }
 
   async getTweets(username) {
-    const query = username ? `?username=${username}` : "";
+    const query = username ? `?username=${username}` : '';
     return this.http.fetch(`/tweets${query}`, {
-      method: "GET",
+      method: 'GET',
     });
   }
 
   async postTweet(text) {
     return this.http.fetch(`/tweets`, {
-      method: "POST",
-      body: JSON.stringify({ text, username: "ellie", name: "Ellie" }),
+      method: 'POST',
+      body: JSON.stringify({ text, username: 'ellie', name: 'Ellie' }),
     });
   }
 
   async deleteTweet(tweetId) {
     return this.http.fetch(`/tweets/${tweetId}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
   }
 
   async updateTweet(tweetId, text) {
     return this.http.fetch(`/tweets/${tweetId}`, {
-      method: "PUT",
+      method: 'PUT',
       body: JSON.stringify({ text }),
     });
   }
