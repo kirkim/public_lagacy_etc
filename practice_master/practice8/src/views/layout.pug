@@ -1,0 +1,26 @@
+doctype html
+html(lang=ko)
+head
+	title #{pageTitle} | #{siteName}
+	//link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+body
+	h1=pageTitle
+	header
+		nav
+			ul
+				li
+					a(href="/") Home
+				if !loggedIn
+					li
+						a(href="/login") Login
+				else
+					span #{loggedInUser.name}님 안녕하세요
+					li
+						a(href="/post") Post
+					li
+						a(href="/logout") Logout
+	main
+		block content
+
+
+include partial/footer.pug
