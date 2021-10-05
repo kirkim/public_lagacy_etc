@@ -4,6 +4,8 @@ import globalRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 import session from "express-session";
+import MongoStore from "connect-mongo";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 const logger = morgan("dev");
@@ -15,24 +17,25 @@ app.use(express.urlencoded({ extended: true })); // form을 이해하고 js형�
 
 app.use(
   session({
-    secret: "Hello!",
-    resave: true,
-    saveUninitialized: true,
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 );
 
-app.use((req, res, next) => {
-  req.sessionStore.all((error, sessions) => {
-    console.log(sessions);
-  });
-  next();
-});
+// app.use((req, res, next) => {
+//   req.sessionStore.all((error, sessions) => {
+//     console.log(sessions);
+//   });
+//   next();
+// });
 
 app.get("/add-one", (req, res, next) => {
-  req.session.potato += 1;
-  return res.send(`${req.session.id}\n${req.session.potato}`);
+  return res.send(`${req.session.id}`);
 });
 
+app.use(localsMiddleware);
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);

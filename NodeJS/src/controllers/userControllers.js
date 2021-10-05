@@ -29,7 +29,7 @@ export const postJoin = async (req, res) => {
   } catch (error) {
     return res.status(400).render("join", {
       pageTitle: "Join",
-      errorMessage: error._messaget,
+      errorMessage: error._message,
     });
   }
 };
@@ -53,12 +53,17 @@ export const postLogin = async (req, res) => {
       errorMessage: "Wrong password",
     });
   }
-  console.log("LOG USER IN! COMING SOON!");
+  req.session.loggedIn = true;
+  req.session.user = user;
+
   return res.redirect("/");
 };
 
 export const getLogin = (req, res) => res.render("login", { pageTitle: "Login" });
 export const edit = (req, res) => res.send("Edit");
 export const remove = (req, res) => res.send("Remove");
-export const logout = (req, res) => res.send("Log Out");
+export const logout = (req, res) => {
+  req.session.loggedIn = false;
+  return res.redirect("/");
+};
 export const see = (req, res) => res.send("See User");
