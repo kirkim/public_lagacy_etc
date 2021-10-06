@@ -1,11 +1,11 @@
 import express from "express";
 import morgan from "morgan";
-import globalRouter from "./routers/rootRouter";
-import videoRouter from "./routers/videoRouter";
-import userRouter from "./routers/userRouter";
+import globalRouter from "./routers/rootRouter.js";
+import videoRouter from "./routers/videoRouter.js";
+import userRouter from "./routers/userRouter.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { localsMiddleware } from "./middlewares";
+import { localsMiddleware } from "./middlewares.js";
 
 const app = express();
 const logger = morgan("dev");

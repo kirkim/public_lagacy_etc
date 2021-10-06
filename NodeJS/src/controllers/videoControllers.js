@@ -1,4 +1,4 @@
-import Video from "../models/Video";
+import Video from "../models/Video.js";
 
 /*
 Video.find({}, (error, videos) => {     // find 안기다려줌
