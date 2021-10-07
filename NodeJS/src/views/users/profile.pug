@@ -1,0 +1,9 @@
+extends ../base.pug
+include ../mixins/video.pug
+
+block content
+	h1 hello
+	each potato in user.videos
+		+video(potato)
+	else
+		li Sorry nothing found

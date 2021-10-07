@@ -1,11 +1,11 @@
 import express from "express";
 import morgan from "morgan";
-import globalRouter from "./routers/rootRouter.js";
-import videoRouter from "./routers/videoRouter.js";
-import userRouter from "./routers/userRouter.js";
+import globalRouter from "./routers/rootRouter";
+import videoRouter from "./routers/videoRouter";
+import userRouter from "./routers/userRouter";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { localsMiddleware } from "./middlewares.js";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 const logger = morgan("dev");
@@ -36,6 +36,8 @@ app.get("/add-one", (req, res, next) => {
 });
 
 app.use(localsMiddleware);
+app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);

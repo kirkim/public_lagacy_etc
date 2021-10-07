@@ -6,9 +6,9 @@
     "type": "git",
     "url": "(https://github.com/kirkim/study.git)"
   },
-  "type": "module",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./src/init.js"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack"
   },
   "author": "kirkim",
   "license": "ISC",
@@ -21,13 +21,21 @@
     "mongoose": "^6.0.7",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
-    "node-fetch": "^3.0.0",
+    "node-fetch": "^2.6.1",
     "pug": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
     "@babel/preset-env": "^7.15.4",
-    "nodemon": "^2.0.12"
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.3.0",
+    "mini-css-extract-plugin": "^2.4.1",
+    "nodemon": "^2.0.12",
+    "sass": "^1.42.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.57.1",
+    "webpack-cli": "^4.9.0"
   }
 }
