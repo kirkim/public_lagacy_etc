@@ -12,7 +12,9 @@ Video.find({}, (error, videos) => {     // find 안기다려줌
 
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({}).sort({ createdAt: "desc" }); /// find()할떄까지 기다려줌
+    const videos = await Video.find({})
+      .sort({ createdAt: "desc" })
+      .populate("owner"); /// find()할떄까지 기다려줌
     return res.render("home", { pageTitle: "Home", videos });
   } catch {
     return res.render("server-error");
@@ -127,7 +129,7 @@ export const search = async (req, res) => {
       title: {
         $regex: new RegExp(`${keyword}$`, "i"),
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { pageTitle: "Search", videos });
 };
