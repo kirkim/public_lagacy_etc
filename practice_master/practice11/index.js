@@ -93,14 +93,16 @@ const handleKey = (event) => {
   console.log(event.keyCode);
   if (event.keyCode === 32) {
     handlePlayAndStop();
-  }
-  if (event.keyCode === 70 && !document.fullscreenElement) {
+  } else if (event.keyCode === 70 && !document.fullscreenElement) {
     fullScreenBtn.innerText = "Exit Full Screen";
     videoContainer.requestFullscreen();
-  }
-  if (event.keyCode === 27) {
+  } else if (event.keyCode === 27) {
     fullScreenBtn.innerText = "Enter Full Screen";
     document.exitFullscreen();
+  } else if (event.keyCode === 39) {
+    video.currentTime += 1;
+  } else if (event.keyCode === 37) {
+    video.currentTime -= 1;
   }
 };
 
@@ -111,4 +113,7 @@ video.addEventListener("loadedmetadata", loadedMetadata);
 video.addEventListener("timeupdate", updateTime);
 playRange.addEventListener("input", handlePlayRange);
 fullScreenBtn.addEventListener("click", handleFullscreen);
-window.addEventListener("keydown", handleKey);
+document.addEventListener("keydown", handleKey);
+document.onfullscreenchange = (event) => {
+  console.log(event);
+};
