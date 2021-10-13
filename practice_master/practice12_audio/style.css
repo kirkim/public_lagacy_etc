@@ -1,0 +1,26 @@
+.hidden {
+  display: none;
+}
+.pre {
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.pre__controllers {
+  margin-top: 5px;
+  width: 330px;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+}
+.audioRange input {
+  margin-left: 8px;
+  width: 300px;
+}
+
+.play__tool {
+  margin-left: 10px;
+}
+.play__tool i {
+  margin-right: 10px;
+}
