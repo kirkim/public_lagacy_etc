@@ -1,15 +1,24 @@
 .hidden {
   display: none;
 }
+.record__time {
+  margin-top: 10px;
+}
 .pre {
   font-weight: bold;
   margin-top: 30px;
 }
-
+.record__set {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 .pre__controllers {
+  position: relative;
   margin-top: 5px;
   width: 330px;
-  background-color: antiquewhite;
+  height: 50px;
+  background-color: rgb(215, 223, 250);
   display: flex;
   flex-direction: column;
 }
@@ -18,9 +27,27 @@
   width: 300px;
 }
 
-.play__tool {
+.record__tool {
+  position: relative;
   margin-left: 10px;
 }
-.play__tool i {
+.record__tool i {
   margin-right: 10px;
+}
+.record__index {
+  position: absolute;
+  right: 50px;
+}
+.record__delete {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+.record__download {
+  color: white;
+  margin-left: 4px;
+  background-color: rgb(10, 8, 109);
+  padding: 5px;
+  border-radius: 10px;
+  border: 5px ridge rgb(13, 87, 224);
 }

@@ -1,6 +1,6 @@
 export default class Timer {
   constructor() {
-    this.time = 0;
+    this.time = -1;
     this.interval = null;
   }
   start = () => {
