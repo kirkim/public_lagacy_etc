@@ -49,7 +49,7 @@ const togglePlay = (event) => {
   } else {
     video.pause();
   }
-  playBtn.classList = video.paused ? "fas fa-play" : "fas fa-pause";
+  //playBtn.classList = video.paused ? "fas fa-play" : "fas fa-pause";
   // else play the video
 };
 
@@ -159,3 +159,9 @@ fullScreenBtn.addEventListener("click", toggleFullscreen);
 video.addEventListener("mousemove", handleMouseMove);
 //video.addEventListener("mouseleave", handleMouseLeave);
 document.addEventListener("keydown", handleKeycode);
+video.addEventListener("pause", () => {
+  playBtn.classList = "fas fa-play";
+});
+video.addEventListener("play", () => {
+  playBtn.classList = "fas fa-pause";
+});

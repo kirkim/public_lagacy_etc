@@ -35,10 +35,15 @@ app.use(
 app.get("/add-one", (req, res, next) => {
   return res.send(`${req.session.id}`);
 });
-
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("assets"));
+app.use("/convert", express.static("node_modules/@ffmpeg/core/dist"));
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
