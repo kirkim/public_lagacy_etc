@@ -1,9 +1,9 @@
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import * as authRepository from "../data/data-auth.js";
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import * as authRepository from '../data/data-auth.js';
 
-const secret = "FMowkoto!EHSm*K#DqJZAJTTQYhdUt#O";
-const jwtExpiresInDay = "2d";
+const secret = 'FMowkoto!EHSm*K#DqJZAJTTQYhdUt#O';
+const jwtExpiresInDay = '2d';
 const bcryptSaltRound = 10;
 
 export async function signup(req, res, next) {
@@ -30,11 +30,11 @@ export async function login(req, res, next) {
   const { username, password } = req.body;
   const user = await authRepository.findByusername(username);
   if (!user) {
-    return res.status(400).json({ message: "Invalid username or password!" });
+    return res.status(401).json({ message: 'Invalid username or password!' });
   }
   const checkPassword = bcrypt.compareSync(password, user.password);
   if (!checkPassword) {
-    return res.status(400).json({ message: "Invalid username or password!" });
+    return res.status(401).json({ message: 'Invalid username or password!' });
   }
   const token = createJwt(user.id);
   return res.status(200).json({ username, token });
@@ -50,7 +50,7 @@ function createJwt(id) {
 export async function me(req, res, next) {
   const user = await userRepository.findById(req.userId);
   if (!user) {
-    return res.status(404).json({ message: "User not found" });
+    return res.status(404).json({ message: 'User not found' });
   }
   return res.status(200).json({ token: req.token, username: user.username });
 }
