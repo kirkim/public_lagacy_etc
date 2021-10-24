@@ -9,7 +9,6 @@ export const localsMiddleware = (req, res, next) => {
 
 export const protectMiddleWare = (req, res, next) => {
   if (req.session.loggedIn) {
-    console.log(req.session.loggedIn);
     next();
   } else {
     req.flash('error', 'Log in first');

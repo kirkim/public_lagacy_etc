@@ -16,7 +16,7 @@ app.set('view engine', 'pug');
 app.set('views', process.cwd() + '/src/views'); // view의 위치를 서버폴더에서 찾기때문 이렇게 지정해줘야함
 app.use(logger);
 app.use(express.urlencoded({ extended: true })); // form을 이해하고 js형태로 바꿔줌
-
+app.use(express.json());
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -26,23 +26,13 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   req.sessionStore.all((error, sessions) => {
-//     console.log(sessions);
-//   });
-//   next();
-// });
-
-app.get('/add-one', (req, res, next) => {
-  return res.send(`${req.session.id}`);
-});
 app.use((req, res, next) => {
   res.header('Cross-Origin-Embedder-Policy', 'require-corp');
   res.header('Cross-Origin-Opener-Policy', 'same-origin');
   next();
 });
-
 app.use(flash());
+
 app.use(localsMiddleware);
 app.use('/uploads', express.static('uploads'));
 app.use('/static', express.static('assets'));
