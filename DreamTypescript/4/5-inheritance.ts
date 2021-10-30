@@ -8,16 +8,11 @@
     makeCoffee(shots: number): CoffeeCup;
   }
 
-  interface CommercialCoffeeMaker {
-    makeCoffee(shots: number): CoffeeCup;
-    fillCoffeeBeans(beans: number): void;
-    clean(): void;
-  }
-  class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
+  class CoffeeMachine implements CoffeeMaker {
     private static BEANS_GRAM_PER_SHOT: number = 7;
     private coffeeBeans: number = 0;
 
-    private constructor(coffeeBeans: number) {
+    constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
     }
 
@@ -63,37 +58,26 @@
     }
   }
 
-  //   const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
-  //   maker.fillCoffeeBeans(32);
-  //   maker.makeCoffee(2);
-
-  //   const maker2: CommercialCoffeeMaker = CoffeeMachine.makeMachine(32);
-  //   maker2.fillCoffeeBeans(32); // interface를 이용해서 동작할 수 있는 범위에 제약을 줄 수 있다
-  //   maker2.makeCoffee(2);
-  //   maker2.clean();
-
-  class AmateurUser {
-    constructor(private machine: CoffeeMaker) {}
-    makeCoffee() {
-      const coffee = this.machine.makeCoffee(2);
-      console.log(coffee);
+  class CaffeLatteMachine extends CoffeeMachine {
+    constructor(beans: number, public readonly serialNumber: string) {
+      super(beans);
+    }
+    private steamMilk(): void {
+      console.log('Steaming some milk... 🥛');
+    }
+    makeCoffee(shots: number): CoffeeCup {
+      const coffee = super.makeCoffee(shots);
+      this.steamMilk();
+      return {
+        ...coffee,
+        hasMilk: true,
+      };
     }
   }
 
-  class ProBarista {
-    constructor(private machine: CommercialCoffeeMaker) {}
-    makeCoffee() {
-      const coffee = this.machine.makeCoffee(2);
-      console.log(coffee);
-      this.machine.fillCoffeeBeans(45);
-      this.machine.clean();
-    }
-  }
-
-  const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
-  const amateur = new AmateurUser(maker);
-  const pro = new ProBarista(maker);
-  amateur.makeCoffee();
-  console.log();
-  pro.makeCoffee();
+  const machine = new CoffeeMachine(23);
+  const latteMachine = new CaffeLatteMachine(23, 'SSSS');
+  const coffee = latteMachine.makeCoffee(1);
+  console.log(coffee);
+  console.log(latteMachine);
 }
