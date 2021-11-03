@@ -1,5 +1,6 @@
 'use strict';
 
+import PopImage from './class/popImage.js';
 import PopWindow from './class/popWindow.js';
 
 const addNavForm = document.querySelector('#add__navigator');
@@ -9,16 +10,16 @@ const popForm = document.querySelector('#pop__section');
 function handleAddNav(event) {
   switch (event.target.id) {
     case 'image__btn':
-      popWin = new PopWindow('Title', 'URL');
+      popWin = new PopImage('Title', 'URL');
       break;
     case 'video__btn':
-      popWin = new PopWindow('Title', 'URL');
+      //popWin = new PopWindow('Title', 'URL');
       break;
     case 'note__btn':
-      popWin = new PopWindow('Title', 'Body');
+      //popWin = new PopWindow('Title', 'Body');
       break;
     case 'task__btn':
-      popWin = new PopWindow('Title', 'Body');
+      //popWin = new PopWindow('Title', 'Body');
       break;
   }
   popWin.open();

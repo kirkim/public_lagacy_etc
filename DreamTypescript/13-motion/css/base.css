@@ -1,5 +1,6 @@
 @import url('./reset.css');
 @import url('./pop.css');
+@import url('./content.css');
 
 :root {
   --bg-main-color: #00000080;

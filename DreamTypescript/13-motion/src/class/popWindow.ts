@@ -1,10 +1,11 @@
-export default class PopWindow {
+export default abstract class PopWindow {
   private popSection = document.querySelector('#pop__section');
-  private input2 = document.querySelector('#pop__label__2');
+  private bodyLabel = document.querySelector('#pop__label__2');
+  protected mainForm = document.querySelector('#main__section');
 
-  constructor(private title: string, private content: string) {
-    if (this.input2) {
-      this.input2.textContent = content;
+  constructor(protected title: string, protected content: string) {
+    if (this.bodyLabel) {
+      this.bodyLabel.textContent = content;
     }
   }
 
@@ -19,4 +20,6 @@ export default class PopWindow {
   make = () => {
     console.log('make!');
   };
+
+  abstract delete(event): void;
 }

@@ -4,7 +4,8 @@ var PopWindow = /** @class */ (function () {
         this.title = title;
         this.content = content;
         this.popSection = document.querySelector('#pop__section');
-        this.input2 = document.querySelector('#pop__label__2');
+        this.bodyLabel = document.querySelector('#pop__label__2');
+        this.mainForm = document.querySelector('#main__section');
         this.open = function () {
             var _a;
             (_a = _this.popSection) === null || _a === void 0 ? void 0 : _a.classList.remove('hidden');
@@ -16,8 +17,8 @@ var PopWindow = /** @class */ (function () {
         this.make = function () {
             console.log('make!');
         };
-        if (this.input2) {
-            this.input2.textContent = content;
+        if (this.bodyLabel) {
+            this.bodyLabel.textContent = content;
         }
     }
     return PopWindow;
