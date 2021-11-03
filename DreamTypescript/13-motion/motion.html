@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <title>Motion</title>
+  </head>
+  <body>
+    <div class="layout">
+      <header>
+        <h2>MOTION</h2>
+        <nav id="add__navigator">
+          <ul>
+            <li id="image__btn">IMAGE</li>
+            <li id="video__btn">VIDEO</li>
+            <li id="note__btn">NOTE</li>
+            <li id="task__btn">TASK</li>
+          </ul>
+        </nav>
+      </header>
+      <section class="main__section"></section>
+    </div>
+    <section class="hidden pop__section" id="pop__section">
+      <article class="pop__block">
+        <div class="pop__close__btn">
+          <span id="pop__close__btn">❌</span>
+        </div>
+        <div class="pop__input">
+          <label for="pop__input__1" id="pop__label__1">Title</label>
+          <input id="pop__input__1" />
+          <label for="pop__input__2" id="pop__label__2">URL</label>
+          <input id="pop__input__2" />
+        </div>
+        <div class="pop__submit">
+          <span id="pop__submit">ADD</span>
+        </div>
+      </article>
+    </section>
+    <script type="module" src="./build/motion.js"></script>
+  </body>
+</html>

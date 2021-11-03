@@ -1,31 +1,32 @@
 /**
  * Let's make a game 🕹
  */
-
-//MY Solution@@@@@@
-type directionType = 'up' | 'down' | 'left' | 'right';
-type Position = {
-  x: number;
-  y: number;
-};
-const position: Position = {
-  x: 0,
-  y: 0,
-};
-function move(directionType: directionType): void {
-  switch (directionType) {
-    case 'up':
-      position.y++;
-      break;
-    case 'down':
-      position.y--;
-      break;
-    case 'left':
-      position.x--;
-      break;
-    case 'right':
-      position.x++;
-      break;
+{
+  //MY Solution@@@@@@
+  type directionType = 'up' | 'down' | 'left' | 'right';
+  type Position = {
+    x: number;
+    y: number;
+  };
+  const position: Position = {
+    x: 0,
+    y: 0,
+  };
+  function move(directionType: directionType): void {
+    switch (directionType) {
+      case 'up':
+        position.y++;
+        break;
+      case 'down':
+        position.y--;
+        break;
+      case 'left':
+        position.x--;
+        break;
+      case 'right':
+        position.x++;
+        break;
+    }
   }
 }
 
