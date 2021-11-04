@@ -21,5 +21,8 @@ export default abstract class PopWindow {
     console.log('make!');
   };
 
-  abstract delete(event): void;
+  delete = (event) => {
+    const node = event.target.parentNode;
+    this.mainForm?.removeChild(node);
+  };
 }

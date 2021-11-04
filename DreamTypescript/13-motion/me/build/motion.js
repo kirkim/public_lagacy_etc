@@ -1,21 +1,24 @@
 'use strict';
 import PopImage from './class/popImage.js';
-var addNavForm = document.querySelector('#add__navigator');
-var popWin;
-var popForm = document.querySelector('#pop__section');
+import PopNote from './class/popNote.js';
+import PopTask from './class/popTask.js';
+import PopVideo from './class/popVideo.js';
+const addNavForm = document.querySelector('#add__navigator');
+let popWin;
+const popForm = document.querySelector('#pop__section');
 function handleAddNav(event) {
     switch (event.target.id) {
         case 'image__btn':
             popWin = new PopImage('Title', 'URL');
             break;
         case 'video__btn':
-            //popWin = new PopWindow('Title', 'URL');
+            popWin = new PopVideo('Title', 'URL');
             break;
         case 'note__btn':
-            //popWin = new PopWindow('Title', 'Body');
+            popWin = new PopNote('Title', 'Body');
             break;
         case 'task__btn':
-            //popWin = new PopWindow('Title', 'Body');
+            popWin = new PopTask('Title', 'Body');
             break;
     }
     popWin.open();
