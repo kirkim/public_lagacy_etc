@@ -1,16 +1,16 @@
-type Post = {
+export type Post = {
   id: string;
   title: string;
   content: string;
   createdAt: Date;
   userId: string;
 };
+export type Posts = Post[];
 type InputPost = {
   title: string;
   content: string;
   userId: string;
 };
-type Posts = Post[];
 
 let posts: Posts = [
   {
@@ -48,9 +48,9 @@ export async function create(post: InputPost): Promise<string> {
   return created.id;
 }
 
-// export async function findById(id) {
-//   return posts.find((post) => post.id === id);
-// }
+export async function findById(id: string) {
+  return posts.find((post) => post.id === id);
+}
 
 // export async function findByUserId(userId) {
 //   let postArray;

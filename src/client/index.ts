@@ -1,13 +1,15 @@
-import BoardPage from './components/board.js';
-import HttpClient from './network/http.js';
+import { BoardList } from './components/board/boardList.js';
+import { BasicBoard } from './components/basicBoard.js';
+import * as global from './global.js';
 
-const baseURL = `http://localhost:8080`;
-const httpClient = new HttpClient(baseURL);
-const boardPage = new BoardPage(httpClient);
 const openBoardPageBtn = document.querySelector('#nav-board')! as HTMLButtonElement;
+const main = document.querySelector('.document')! as HTMLDivElement;
 
 async function openBoardPage() {
-  await boardPage.getBoard();
+  const data = await global.boardPage.getBoard();
+  const boardList = new BoardList(data);
+  const board = new BasicBoard(boardList);
+  board.render(main);
 }
 
 openBoardPageBtn.addEventListener('click', openBoardPage);

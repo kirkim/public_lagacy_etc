@@ -1,21 +1,30 @@
 // import bcrypt from 'bcrypt';
 // import config from '../config.js';
 
-// // password: 1231
-// let users = [
-//   {
-//     username: 'chichu',
-//     password: '$2b$12$onO6FjcLQx4ZHlpMgwzHg.2yAT9b6Jgde3ul6Jgr2CsUTza1JTqpm',
-//     name: 'Jisoo',
-//     id: '1',
-//   },
-//   {
-//     username: 'Bob123',
-//     password: '$2b$12$onO6FjcLQx4ZHlpMgwzHg.2yAT9b6Jgde3ul6Jgr2CsUTza1JTqpm',
-//     name: 'Bob',
-//     id: '2',
-//   },
-// ];
+// password: 1231
+
+export type User = {
+  username: string;
+  password: string;
+  name: string;
+  id: string;
+};
+export type Users = User[];
+
+let users: Users = [
+  {
+    username: 'chichu',
+    password: '$2b$12$onO6FjcLQx4ZHlpMgwzHg.2yAT9b6Jgde3ul6Jgr2CsUTza1JTqpm',
+    name: 'Jisoo',
+    id: '1',
+  },
+  {
+    username: 'Bob123',
+    password: '$2b$12$onO6FjcLQx4ZHlpMgwzHg.2yAT9b6Jgde3ul6Jgr2CsUTza1JTqpm',
+    name: 'Bob',
+    id: '2',
+  },
+];
 
 // async function hashPassword(password) {
 //   return await bcrypt.hash(password, config.bcrypt.saltRounds);
@@ -43,9 +52,9 @@
 //   return users.find((user) => user.username === username);
 // }
 
-// export async function findById(id) {
-//   return users.find((user) => user.id === id);
-// }
+export async function findById(id: string) {
+  return users.find((user) => user.id === id);
+}
 
 // export async function getAllUsers() {
 //   return users;
