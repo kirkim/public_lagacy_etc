@@ -1,0 +1,64 @@
+.dropzone {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  height: 460px;
+  margin-bottom: 20px;
+  padding: 20px;
+  transition: background-color 0.25s ease-in; }
+  .dropzone:hover {
+    background-color: #fcfcfc;
+    border-color: #5bc0de; }
+  .dropzone .panel {
+    border-color: #5bc0de; }
+    .dropzone .panel:hover {
+      cursor: default; }
+  .dropzone .panel-heading {
+    border-color: #5bc0de;
+    background-color: #5bc0de;
+    color: #fff; }
+  .dropzone .panel-title {
+    position: relative; }
+    .dropzone .panel-title .fa {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 15px;
+      height: 15px;
+      z-index: 2;
+      color: #fff; }
+      .dropzone .panel-title .fa:hover {
+        cursor: pointer; }
+
+.panel:hover {
+  border-color: #5bc0de;
+  cursor: move; }
+  .panel:hover .panel-heading {
+    border-color: #5bc0de;
+    background-color: #5bc0de;
+    color: #fff; }
+
+.over {
+  border-style: dashed; }
+
+.selected {
+  display: none; }
+
+.cloned {
+  opacity: 0.5; }
+  .cloned.selected {
+    display: block; }
+
+.panel-title {
+  position: relative; }
+  .panel-title .fa {
+    display: none; }
+
+aside h2 {
+  margin-top: 0; }
+
+footer {
+  border-top: 1px solid #eee;
+  padding: 1rem 0; }
