@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS TEXT</title>
+        
+        <script type="text/javascript">
+            
+            function showAlert(text){
+                alert('Java Script Test \n' + text)
+            }
+            
+            function loadiPhoneInfo(){
+                window.webkit.messageHandlers.iPhoneInfo.postMessage('someParam');
+                window.webkit.messageHandlers.aaa.postMessage('someParam');
+                window.webkit.messageHandlers.bbb.postMessage('someParam');
+            }
+        </script>
+    </head>
+    <body>
+        <button style="font-size:50px;width:500px;height:200px" onclick='loadiPhoneInfo();'>iPhone Info</button></br>
+    </body>
+</html>

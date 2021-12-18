@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS TEXT</title>
+        
+        <script type="text/javascript">
+            function loadiPhoneInfo(){
+                window.webkit.messageHandlers.iPhoneInfo.postMessage('someParam');
+            }
+        </script>
+    </head>
+    <body>
+        <button style="WIDTH: 300pt; HEIGHT: 60pt" onclick='loadiPhoneInfo();'>iPhone Info</button></br>
+    </body>
+</html>
