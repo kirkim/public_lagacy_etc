@@ -180,6 +180,22 @@
 //    }
 //}
 //
+//// UIViewController
+//struct MyWebVC: UIViewControllerRepresentable {
+//
+//    func makeUIViewController(context: Context) -> some UIViewController {
+//
+//        let webVC = UIStoryboard(name: "WebViewController", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+//
+//        // 네비게이션으로 감싼 웹뷰로 만들어줄 수 있음, 제목이나 다른 커스텀 아이템 사용가능해짐
+//        let navi = UINavigationController(rootViewController: webVC)
+//
+//        return navi
+//    }
+//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+//    }
+//}
+//
 ///* WebView.swift */
 //import WebKit
 //import SwiftUI
@@ -204,23 +220,6 @@
 //    }
 //}
 //
-//// UIViewController
-//struct MyWebVC: UIViewControllerRepresentable {
-//
-//    func makeUIViewController(context: Context) -> some UIViewController {
-//
-//        let webVC = UIStoryboard(name: "WebViewController", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-//
-//        // 네비게이션으로 감싼 웹뷰로 만들어줄 수 있음, 제목이나 다른 커스텀 아이템 사용가능해짐
-//        let navi = UINavigationController(rootViewController: webVC)
-//
-//        return navi
-//
-//    }
-//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//
-//    }
-//}
 //
 ///* WebViewController.swift */
 //import UIKit
@@ -246,9 +245,9 @@
 //    }
 //}
 
-// MARK: - 14. WebView JS Bridge => swiftUI의 내용은 없음
-// 13과 WebView.swift, ContentView.swift는 동일 => story보드방식으로 프로젝트를 생성했다면 필요없긴함.
-
+ //MARK: - 14. WebView JS Bridge => swiftUI의 내용은 없음
+// //13과 WebView.swift, ContentView.swift는 동일 => story보드방식으로 프로젝트를 생성했다면 필요없긴함.
+//
 ///* WebViewController */
 //import UIKit
 //import WebKit
@@ -335,4 +334,231 @@
 //    </body>
 //</html>
 
-// MARK: - 15. 
+// MARK: - 15. Grid
+//// CollectionView, 바둑판
+//struct ContentView: View {
+//
+//    var columns: [GridItem] {
+//        [
+////            GridItem(.flexible(minimum: 50, maximum: 200)),
+////            GridItem(.adaptive(minimum: 30, maximum: 100))
+//            GridItem(.fixed(100))
+//        ]
+//    }
+//
+//    var body: some View {
+//
+//        ScrollView(.horizontal) {
+//            LazyHGrid(rows: columns) {
+//                Text("hi hello 안녕").lineLimit(1)
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//                Image(systemName: "music.mic")
+//                    .myImageModifier()
+//            }
+//        }
+//    }
+//}
+//
+//extension Image {
+//    func myImageModifier() -> some View {
+//        self
+//            .resizable()
+//            .aspectRatio(1.0, contentMode: .fit)
+//    }
+//}
+
+// MARK: - 16. Placeholder
+//// redact
+//
+//struct ContentView: View {
+//
+//    @State private var myString = "hello world"
+//
+//    @State private var showPlaceholder = false
+//
+//    var body: some View {
+//        VStack {
+//            VStack {
+//                Image(systemName: "person")
+//                    .resizable()
+//                    .frame(width: 200, height: 200)
+//                    .clipShape(Circle()) // 동그랗게 잘라줌
+//                    .overlay(Circle().stroke()) // 선만 동그랗게 칠해줌
+//
+//                Text(myString)
+//                    .foregroundColor(.red)
+//                    .padding()
+//                Button("click me") {
+//                    showPlaceholder.toggle()
+//                } // 버튼이 placeholder가 된다고 기능을 잃지는 않는다
+//            }
+//            .redacted(reason: showPlaceholder ? .placeholder : .init()) // .init()은 사용하지 않는 상태
+//
+//        }
+//    }
+//}
+
+// MARK: - 17. NavigationView
+//// NavigationView: 굉장히 유용하고 써야할 옵션들이 많기 때문에 잘보고 넘어가자.
+//
+//struct ContentView: View {
+//
+//    init(){
+////        // 다소 복잡해지는 방식 💩
+////        UINavigationBar.appearance()
+////            .titleTextAttributes = [.foregroundColor
+////                                    : UIColor.blue]
+//        // 대안 ✨ ==> iOS15 부터 네비게이션바에 뭔가가 추가되었다.
+//        let myAppearance = UINavigationBarAppearance()
+//
+//        myAppearance.titleTextAttributes = [
+//            .foregroundColor : UIColor.blue,
+//            .font : UIFont.italicSystemFont(ofSize: 30)
+//        ]
+//
+//        // 큰 제목일때도 따로 설정해야 한다.
+//        myAppearance.largeTitleTextAttributes = [
+//            .foregroundColor : UIColor.green
+//        ]
+//
+////        myAppearance.configureWithOpaqueBackground()
+//        myAppearance.backgroundColor = .systemRed
+//
+//        UINavigationBar.appearance().standardAppearance = myAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance =  myAppearance
+//        UINavigationBar.appearance().compactAppearance = myAppearance
+////        UINavigationBar.appearance().scrollEdgeAppearance =  UINavigationBar. ().standardAppearance
+//
+////        // 위에 것 대신에 아래와 같이 직접 백그라운드를 변경하면 약간 다르게 표시된다.⚠️
+////        UINavigationBar.appearance().backgroundColor = .orange
+//
+//        // detail로 들어갔을 때 title 변경하기
+//        UINavigationBar.appearance().tintColor = .yellow
+//    }
+//
+//    var body: some View {
+////         // 1️⃣ 네비게이션 타이틀 비교
+////        NavigationView {
+////            List{
+////                Text("Hello, world!")
+////                    .padding()
+////            }.navigationBarTitle("Hello", displayMode: .large)
+////        }
+//
+////        // 2️⃣ 네비게이션 링크 사용
+////        NavigationView {
+////            NavigationLink("click me", destination: Text("detail"))
+////            .navigationBarTitle("Hello", displayMode: .inline)
+////        }
+//
+//        // 3️⃣ 네비게이션 링크 활용
+//        NavigationView {
+//            List{
+//                NavigationLink {
+//                    Text("Destination")
+//                } label: {
+//                    HStack{
+//                        Image(systemName: "person")
+//                        Text("Navigate")
+//                    }
+//                }
+//            }
+//            .navigationBarTitle("Hello", displayMode: .large)
+//        }
+//    }
+//}
+
+// MARK: - 18. TabView
+//struct ContentView: View {
+//
+//    var body: some View {
+//        TabView {
+//            First()
+//                .tabItem {
+//                    Image(systemName: "person")
+//                    Text("person")
+//                }
+//                .edgesIgnoringSafeArea(.top) // 탭바는 윗쪽만 채우는 것이 좋음
+//            Second()
+//                .tabItem {
+//                    Image(systemName: "person.fill")
+//                    Text("person.fill")
+//                }
+//        }
+//    }
+//}
+//
+//struct First: View {
+//    var body: some View {
+//        ZStack {
+//            Color.orange
+//            Text("first")
+//        }
+//    }
+//}
+//
+//struct Second: View {
+//    var body: some View {
+//        ZStack {
+//            Color.green
+//            Text("second")
+//        }
+//    }
+//}
+
+// MARK: - 19, 20 Toggle
+//// swiftUI에서 제공해주는 기본 toggle은 커스텀이 좀 한정적이다. 그래서 직접 만들어서 사용하는 경우가 많다.
+//// GeometryReader 사용법이 퀵포인트
+//struct CustomToggle: ToggleStyle {
+//    func makeBody(configuration: Configuration) -> some View {
+//
+//        // Design
+//
+//        RoundedRectangle(cornerRadius: 100)
+//            .foregroundColor(configuration.isOn ? .red : .blue)
+//            .overlay(
+//                GeometryReader(content: { geometry in
+//                    ZStack {
+//                        Circle().foregroundColor(.orange)
+//                            .frame(width: geometry.size.height)// 내부원의 크기를 잡아준다
+//                        Text(configuration.isOn ? "On" : "Off")
+//                            .foregroundColor(configuration.isOn ? .red : .blue)
+//                    }
+//                    .offset(x: configuration.isOn ? geometry.frame(in: .local).minX : geometry.frame(in: .local).maxX - geometry.size.height)
+//                    .animation(.easeInOut(duration: 0.4))
+//                    .shadow(radius: 10)
+//                })
+//            )
+//            .clipShape(Capsule()) // clipShape는 자르는 것 => 안쪽만 남음, Capsule()은 캡슐모양으로 자름
+//            .onTapGesture(count: 1) {
+//                configuration.isOn.toggle()
+//            }
+//    }
+//}
+//
+//struct ContentView: View {
+//
+//    @State private var isOn = false
+//
+//    var body: some View {
+//        Toggle("\(isOn.description)", isOn: $isOn)
+//            .toggleStyle(CustomToggle())
+//            .frame(width: 200, height: 50)
+//    }
+//}
+
+// MARK: - 21
+
