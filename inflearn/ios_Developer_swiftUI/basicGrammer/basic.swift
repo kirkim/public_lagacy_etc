@@ -1,43 +1,43 @@
 // MARK: - 9. ForEach
-//struct LocationInfo: Hashable, Identifiable {
-//    var id = UUID()
-//    var city = ""
-//    var weather = ""
-//}
-//
-//struct ContentView: View {
-//    @State private var Locations = [
-//        LocationInfo(city: "Seoul", weather: "sunny"),
-//        LocationInfo(city: "Busan", weather: "cloudy"),
-//        LocationInfo(city: "Seoul", weather: "sunny"),
-//        LocationInfo(city: "LA", weather: "rainy")
-//    ]
-//    var body: some View {
-//        List {
-//            ForEach(Locations, id: \.self) { location in
-//                HStack {
-//                    Text("\(location.city)")
-//                    Text("\(location.weather)")
-//                }
-//            }
-//
-//            ForEach(Locations) { location in
-//                HStack {
-//                    Text("\(location.city)")
-//                    Text("\(location.weather)")
-//                }
-//            }
-//
-//            ForEach(0..<Locations.count) { i in
-//                HStack {
-//                    Text("\( (i + 1))")
-//                    Text("\(Locations[i].city)")
-//                    Text("\(Locations[i].weather)")
-//                }
-//            }
-//        }
-//    }
-//}
+struct LocationInfo: Hashable, Identifiable {
+    var id = UUID()
+    var city = ""
+    var weather = ""
+}
+
+struct ContentView: View {
+    @State private var Locations = [
+        LocationInfo(city: "Seoul", weather: "sunny"),
+        LocationInfo(city: "Busan", weather: "cloudy"),
+        LocationInfo(city: "Seoul", weather: "sunny"),
+        LocationInfo(city: "LA", weather: "rainy")
+    ]
+    var body: some View {
+        List {
+            ForEach(Locations, id: \.self) { location in
+                HStack {
+                    Text("\(location.city)")
+                    Text("\(location.weather)")
+                }
+            }
+
+            ForEach(Locations) { location in
+                HStack {
+                    Text("\(location.city)")
+                    Text("\(location.weather)")
+                }
+            }
+
+            ForEach(0..<Locations.count) { i in
+                HStack {
+                    Text("\( (i + 1))")
+                    Text("\(Locations[i].city)")
+                    Text("\(Locations[i].weather)")
+                }
+            }
+        }
+    }
+}
 
 // MARK: - 10. List Section
 //struct Animal: Identifiable {
