@@ -1,42 +1,42 @@
 // MARK: - 9. ForEach
-struct LocationInfo: Hashable, Identifiable {
-    var id = UUID()
-    var city = ""
-    var weather = ""
-}
-
-struct ContentView: View {
-    @State private var Locations = [
-        LocationInfo(city: "Seoul", weather: "sunny"),
-        LocationInfo(city: "Busan", weather: "cloudy"),
-        LocationInfo(city: "Seoul", weather: "sunny"),
-        LocationInfo(city: "LA", weather: "rainy")
-    ]
-    var body: some View {
-        List {
-            ForEach(Locations, id: \.self) { location in
-                HStack {
-                    Text("\(location.city)")
-                    Text("\(location.weather)")
-                }
-            }
-
-            ForEach(Locations) { location in
-                HStack {
-                    Text("\(location.city)")
-                    Text("\(location.weather)")
-                }
-            }
-
-            ForEach(0..<Locations.count) { i in
-                HStack {
-                    Text("\( (i + 1))")
-                    Text("\(Locations[i].city)")
-                    Text("\(Locations[i].weather)")
-                }
-            }
-        }
-    }
+//struct LocationInfo: Hashable, Identifiable {
+//    var id = UUID()
+//    var city = ""
+//    var weather = ""
+//}
+//
+//struct ContentView: View {
+//    @State private var Locations = [
+//        LocationInfo(city: "Seoul", weather: "sunny"),
+//        LocationInfo(city: "Busan", weather: "cloudy"),
+//        LocationInfo(city: "Seoul", weather: "sunny"),
+//        LocationInfo(city: "LA", weather: "rainy")
+//    ]
+//    var body: some View {
+//        List {
+//            ForEach(Locations, id: \.self) { location in
+//                HStack {
+//                    Text("\(location.city)")
+//                    Text("\(location.weather)")
+//                }
+//            }
+//
+//            ForEach(Locations) { location in
+//                HStack {
+//                    Text("\(location.city)")
+//                    Text("\(location.weather)")
+//                }
+//            }
+//
+//            ForEach(0..<Locations.count) { i in
+//                HStack {
+//                    Text("\( (i + 1))")
+//                    Text("\(Locations[i].city)")
+//                    Text("\(Locations[i].weather)")
+//                }
+//            }
+//        }
+//    }
 }
 
 // MARK: - 10. List Section
@@ -95,46 +95,46 @@ struct ContentView: View {
 //}
 
 // MARK: - 11. ViewModifier
-//struct ContentView: View {
-//    var body: some View {
-//        VStack {
-//            Text("Main Title!")
-//                .font(.largeTitle)
-//                .foregroundColor(.black)
-//                .bold()
-//            Text("Sub Title!")
-//                .modifier(TextMyStyle())
-//            Text("Descripttion!")
-//                .modifier(TextMyStyle(myColor: .red))
-//            Text("Descripttion!")
-//                .customFont(color: .orange)
-//        }
-//    }
-//}
-//
-//struct TextMyStyle: ViewModifier {
-//    var myWeight = Font.Weight.regular
-//    var myFont = Font.title2
-//    var myColor = Color.black
-//
-//    func body(content: Content) -> some View {
-//        content
-//            .font(myFont.weight(myWeight))
-//            .foregroundColor(myColor)
-//            .padding(.bottom, 20)
-//            .font(myFont.italic()) // italic 사용 못한다고 볼 수 있지만 방법이 다를뿐 이런식으로 사용하면된다.
-//    }
-//}
-//
-//extension Text {
-//    func customFont(color: Color) -> Text {
-//        self
-//            .font(.title2)
-//            .bold()
-//            .italic()
-//            .foregroundColor(color)
-//    }
-//}
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Text("Main Title!")
+                .font(.largeTitle)
+                .foregroundColor(.black)
+                .bold()
+            Text("Sub Title!")
+                .modifier(TextMyStyle())
+            Text("Descripttion!")
+                .modifier(TextMyStyle(myColor: .red))
+            Text("Descripttion!")
+                .customFont(color: .orange)
+        }
+    }
+}
+
+struct TextMyStyle: ViewModifier {
+    var myWeight = Font.Weight.regular
+    var myFont = Font.title2
+    var myColor = Color.black
+
+    func body(content: Content) -> some View {
+        content
+            .font(myFont.weight(myWeight))
+            .foregroundColor(myColor)
+            .padding(.bottom, 20)
+            .font(myFont.italic()) // italic 사용 못한다고 볼 수 있지만 방법이 다를뿐 이런식으로 사용하면된다.
+    }
+}
+
+extension Text {
+    func customFont(color: Color) -> Text {
+        self
+            .font(.title2)
+            .bold()
+            .italic()
+            .foregroundColor(color)
+    }
+}
 
 // MARK: - 12. Alert View
 //struct ContentView: View {
