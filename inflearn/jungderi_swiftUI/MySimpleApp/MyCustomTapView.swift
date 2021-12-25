@@ -6,24 +6,23 @@
 //
 
 import SwiftUI
+import UIKit
 
-enum tabIndex: Int, CaseIterable {
+enum tabIndex: CaseIterable {
     case first
     case second
     case third
     
-//    var index1: Int {
-//        switch self {
-//        case .first:
-//            return 1
-//        case .second:
-//            return 2
-//        case .third:
-//            return 3
-//        default:
-//            return 0
-//        }
-//    }
+    var index: Int {
+        switch self {
+        case .first:
+            return 0
+        case .second:
+            return 1
+        case .third:
+            return 2
+        }
+    }
 }
 
 struct MyCustomTapView: View {
@@ -46,8 +45,10 @@ struct MyCustomTapView: View {
                 Circle()
                     .frame(width: 90, height: 90)
                     .offset(x: -proxy.size.width / 3, y: 10)
-                    .offset(x: (proxy.size.width / 3) * CGFloat(tabIndex.index1))
-                VStack {
+                    .offset(x: (proxy.size.width / 3) * CGFloat(self.currentView.index))
+                    .animation(.easeInOut(duration: 0.4), value: self.currentView)
+                    .foregroundColor(.green)
+                VStack(spacing: 0) {
                     HStack(alignment: .top, spacing: 0) {
                         Button(action: {
                             self.currentView = .first
@@ -79,10 +80,10 @@ struct MyCustomTapView: View {
                         .position(tabPosition(proxy))
                     } // HStack
                     .animation(.easeInOut(duration: 0.4), value: self.currentView)
-                    .frame(height: 50)
+                    .frame(height: 55)
                     .background(.green)
-                } // ZStack
-            }
+                } //VStack
+            } // ZStack
             .background(.yellow)
         } // GeometryReader
     }
@@ -90,15 +91,20 @@ struct MyCustomTapView: View {
     func MyTabItem(proxy: GeometryProxy, image: String, text: String, isClicked: Bool) -> AnyView {
         return AnyView (
             ZStack {
-                if isClicked == true {
-                    Circle()
-                        .foregroundColor(.white)
-                        .frame(width: tabItemWidth(proxy), height: proxy.size.width)
-                }
-                VStack {
+//                if isClicked == true {
+//                    Circle()
+//                        .foregroundColor(.white)
+//                        .frame(width: tabItemWidth(proxy), height: proxy.size.width)
+//                }
+                VStack(spacing: 0) {
                     Image(systemName: image)
+                        .foregroundColor(isClicked ? .white : .gray)
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
                         .scaleEffect(isClicked ? 1.5 : 1.0)
+                        .offset(y: isClicked ? -20 : 0)
+                        .animation(.easeInOut(duration: 0.4), value: isClicked)
                     Text(text)
+                        .foregroundColor(isClicked ? .white : .gray)
                 }
             }
         )
