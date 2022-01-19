@@ -10,7 +10,7 @@ const PORT = config.host.port;
 
 app.use(morgan('dev'));
 
-app.use('/datas', dataRouter);
+app.use('/', dataRouter);
 
 app.use((req, res, next) => {
   return res.sendStatus(404);
