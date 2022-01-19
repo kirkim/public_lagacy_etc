@@ -1,5 +1,5 @@
 //
-//  NetWorkingItunesAPI.swift
+//  SubNetWorkingItunesAPI.swift
 //  MyMovieApp
 //
 //  Created by 김기림 on 2022/01/18.
@@ -7,16 +7,14 @@
 
 import Foundation
 
-class NetWorkingItunesAPI {
-    static let shared = NetWorkingItunesAPI()
+class SubNetWorkingItunesAPI {
+    static let shared = SubNetWorkingItunesAPI()
     private var movieModel: ItunesDataModel?
-    private var isReady: Bool = false
-    private var count: Int = 0
     
     private init() { }
     
-    public func prepareData() {
-        print("NetWorkingItunesAPI - prepareData() called")
+    public func prepareData(completion: @escaping (ItunesDataModel?) -> Void) {
+        print("SubNetWorkingItunesAPI - prepareData() called")
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
         
@@ -35,26 +33,16 @@ class NetWorkingItunesAPI {
             if let hasData = data {
                 do {
                     sleep(1)
-                    self.movieModel = try JSONDecoder().decode(ItunesDataModel.self, from: hasData)
-                    self.isReady = true
+                    let movieModel = try JSONDecoder().decode(ItunesDataModel.self, from: hasData)
+                    completion(movieModel)
+                    return
                 } catch {
                     print("error: ", error)
                 }
             }
         })
-        
         task.resume()
         session.finishTasksAndInvalidate()
-    }
-    
-    public func getData() -> ItunesDataModel? {
-        print("NetWorkingItunesAPI - getData() called")
-        if (self.isReady == false) {
-            count += 1
-            print("call getData(): ", count)
-            usleep(100000)
-            return getData()
-        }
-        return self.movieModel
+        completion(nil)
     }
 }

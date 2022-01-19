@@ -19,6 +19,7 @@ struct Result: Codable {
     let price: Double
     let shortDescription: String?
     let longDescription: String
+    let date: String
     
     enum CodingKeys: String, CodingKey {
         case title = "trackName"
@@ -27,5 +28,6 @@ struct Result: Codable {
         case price = "trackPrice"
         case shortDescription
         case longDescription
+        case date = "releaseDate"
     }
 }
