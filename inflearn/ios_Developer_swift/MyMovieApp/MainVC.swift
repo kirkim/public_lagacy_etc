@@ -8,117 +8,119 @@
 import UIKit
 
 class MainVC: UIViewController {
-
-    var movieModel: ItunesDataModel?
-    @IBOutlet weak var tableView: UITableView!
-    
-    override func loadView() {
-        super.loadView()
-        
-    }
+    var errorLabel:UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        label.isHidden = true
+        return label
+    }()
+    var movieData: ItunesDataModel?
+    @IBOutlet weak var mySearchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        SubNetWorkingItunesAPI.shared.prepareData { model in
-            self.movieModel = model
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-//        NetWorkingItunesAPI.shared.prepareData()
-//        DispatchQueue.main.async {
-//            self.movieModel = NetWorkingItunesAPI.shared.getData()
-//            self.tableView.reloadData()
-//        }
+        mySearchBar.delegate = self
+        
+        self.config()
+    }
+    
+    private func config() {
+        mySearchBar.autocapitalizationType = .none
+        self.view.addSubview(self.errorLabel)
+        self.errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.errorLabel.topAnchor.constraint(equalTo: self.mySearchBar.bottomAnchor, constant: 50).isActive = true
+        self.errorLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension MainVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count: ", self.movieModel?.resultCount ?? 0)
-        return self.movieModel?.results.count ?? 1
+//        print("count: ", self.movieData?.resultCount ?? 0)
+        return self.movieData?.results.count ?? 0
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 150
-//    }
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
+    
+    private func setCellSyncData(cell: inout MovieCell, cellForRowAt indexPath: IndexPath) {
+        cell.titleLabel.text = movieData?.results[indexPath.row].title
+        cell.descriptionLabel.text = movieData?.results[indexPath.row].shortDescription
+        let currency = movieData?.results[indexPath.row].currency ?? ""
+        let price = movieData?.results[indexPath.row].price.description ?? ""
+        cell.priceLabel.text = "\(currency) \(price)"
+    }
+        
+    private func getCellDate(cellForRowAt indexPath: IndexPath) -> String {
+        guard let dateString = movieData?.results[indexPath.row].date else { return "" }
+        let formatter = ISO8601DateFormatter()
+        guard let isoDate = formatter.date(from: dateString) else { return "" }
+        let myFormatter = DateFormatter()
+        myFormatter.dateFormat = "yyyy년 MM월 dd일"
+        let resultDate = myFormatter.string(from: isoDate)
+        
+        return resultDate
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("MainVC - tableView() cellForRowAt called / IndexPate.row: \(indexPath.row)")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        cell.titleLabel.text = movieModel?.results[indexPath.row].title
-        cell.descriptionLabel.text = movieModel?.results[indexPath.row].shortDescription
-        let currency = movieModel?.results[indexPath.row].currency ?? ""
-        let price = movieModel?.results[indexPath.row].price.description ?? ""
-        cell.priceLabel.text = "\(currency) \(price)"
+//        print("MainVC - tableView() cellForRowAt called / IndexPate.row: \(indexPath.row)")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        if let imageString = movieModel?.results[indexPath.row].image {
-            loadImage(urlString: imageString) { image in
-                DispatchQueue.main.async {
-                    cell.movieImage.image = image
-                }
+        setCellSyncData(cell: &cell, cellForRowAt: indexPath)
+        cell.dateLabel.text = getCellDate(cellForRowAt: indexPath)
+        if let imageString = movieData?.results[indexPath.row].image {
+            MyNetWorking.shared.loadImage(urlString: imageString) { image in
+                cell.movieImage.image = image
             }
         }
         
-
-        if let imageString = movieModel?.results[indexPath.row].image {
-            guard let url = URL(string: imageString) else { return cell }
-
-            DispatchQueue.global().async {
-                do {
-                    let data = try Data(contentsOf: url)
-                    DispatchQueue.main.async {
-                        cell.movieImage.image = UIImage(data: data)
-                    }
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        
-        if let dateString = movieModel?.results[indexPath.row].date {
-            let formatter = ISO8601DateFormatter()
-            if let isoDate = formatter.date(from: dateString) {
-                let myFormatter = DateFormatter()
-                myFormatter.dateFormat = "yyyy년 MM월 dd일"
-                let resultDate = myFormatter.string(from: isoDate)
-                cell.dateLabel.text = resultDate
-            }
-        }
-
         return cell
     }
     
-    func loadImage(urlString: String, completion: @escaping (UIImage?) -> Void ) {
-        print("MainVC - loadImage() called")
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfig)
-//        let session = URLSession.shared
-        if let hasURL = URL(string: urlString) {
-            var request = URLRequest(url: hasURL)
-            request.httpMethod = "GET"
-            
-            session.dataTask(with: request) { data, response, error in
-                print("In loadImage() statusCode: ", (response as! HTTPURLResponse).statusCode)
-                
-                if let hasData = data {
-                    completion( UIImage(data: hasData))
-                    return
-                }
-            }.resume()
-            session.finishTasksAndInvalidate()
-        }
-        
-        completion(nil) // 위에 실행이 안됐을때 @escaping 된 메모리를 해제해줘야됨
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let detailVC = UIStoryboard(name: "DetailMovieVC", bundle: nil).instantiateViewController(withIdentifier: "DetailMovieVC") as? DetailMovieVC else { return }
+        detailVC.resultData = self.movieData?.results[indexPath.row]
+        self.navigationItem.title = "Home"
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
 // MARK: - UISearchBarDelegate
 extension MainVC: UISearchBarDelegate {
     
+    func toggleErrorMessage(isValid: Bool, message: String) {
+        if isValid {
+            self.errorLabel.isHidden = false
+            self.errorLabel.text = message
+            return
+        } else {
+            self.errorLabel.isHidden = true
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        var searchValue = searchBar.searchTextField.text ?? ""
+        MyNetWorking.shared.getItunesData(movieTitle: searchValue) { model in
+            DispatchQueue.main.async {
+                self.movieData = model
+                if (searchValue.count > 5) {
+                    searchValue = "\(searchValue.substring(from: 0, to: 5))..."
+                }
+                self.toggleErrorMessage(isValid: model?.resultCount == 0, message: "\"\(searchValue)\"를 찾을 수 없습니다.")
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+extension String {
+    func substring(from: Int, to: Int) -> String {
+        guard from < count, to >= 0, to - from >= 0 else {
+            return ""
+        }
+        let startI = index(self.startIndex, offsetBy: from)
+        let endI = index(self.startIndex, offsetBy: to + 1)
+        
+        return String(self[startI ..< endI])
+    }
 }
