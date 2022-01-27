@@ -69,8 +69,11 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         setCellSyncData(cell: &cell, cellForRowAt: indexPath)
         cell.dateLabel.text = getCellDate(cellForRowAt: indexPath)
         if let imageString = movieData?.results[indexPath.row].image {
-            MyNetWorking.shared.loadImage(urlString: imageString) { image in
-                cell.movieImage.image = image
+            MyNetWorking.shared.request(movieType: .url(urlString: imageString)) { data, response, error in
+                guard let data = data else { return }
+                DispatchQueue.main.async {
+                    cell.movieImage.image = UIImage(data: data)
+                }
             }
         }
         
@@ -90,29 +93,35 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
 extension MainVC: UISearchBarDelegate {
     
     func toggleErrorMessage(isValid: Bool, message: String) {
-        if isValid {
-            self.errorLabel.isHidden = false
-            self.errorLabel.text = message
-            return
-        } else {
-            self.errorLabel.isHidden = true
-        }
+        self.errorLabel.isHidden = !isValid
+        self.errorLabel.text = message
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         var searchValue = searchBar.searchTextField.text ?? ""
-        MyNetWorking.shared.getItunesData(movieTitle: searchValue) { model in
-            DispatchQueue.main.async {
-                self.movieData = model
-                if (searchValue.count > 5) {
-                    searchValue = "\(searchValue.substring(from: 0, to: 5))..."
+        let term = URLQueryItem(name: "term", value: searchValue)
+        let media = URLQueryItem(name: "media", value: "movie")
+        MyNetWorking.shared.request(movieType: .searchMovie(querys: [term, media])) { data, response, error in
+            do {
+                guard let data = data else { return }
+                let model = try JSONDecoder().decode(ItunesDataModel.self, from: data)
+                DispatchQueue.main.async {
+                    if (searchValue.count > 5) {
+                        searchValue = "\(searchValue.substring(from: 0, to: 5))..."
+                    }
+                    self.toggleErrorMessage(isValid: model.resultCount == 0, message: "\"\(searchValue)\"를 찾을 수 없습니다.")
+                    self.movieData = model
+                    self.tableView.reloadData()
                 }
-                self.toggleErrorMessage(isValid: model?.resultCount == 0, message: "\"\(searchValue)\"를 찾을 수 없습니다.")
-                self.tableView.reloadData()
+                
+            } catch {
+                print(error)
             }
         }
     }
 }
+
+//MARK: - extension
 extension String {
     func substring(from: Int, to: Int) -> String {
         guard from < count, to >= 0, to - from >= 0 else {
