@@ -11,9 +11,5 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storyboard = UIStoryboard(name: "Player", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "PlayerVC")
-        self.tabBarController?.addChild(VC)
-        
     }
 }
