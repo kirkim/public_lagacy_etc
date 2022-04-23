@@ -24,6 +24,9 @@
 		FE72A5A228124C6000361484 /* Cell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72A5A128124C6000361484 /* Cell3.swift */; };
 		FE72A5A4281250F000361484 /* MagnetListSectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72A5A3281250F000361484 /* MagnetListSectionManager.swift */; };
 		FE72A5A6281252ED00361484 /* MagnetMenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72A5A5281252ED00361484 /* MagnetMenuHeaderCell.swift */; };
+		FEB889262813943400F07FD4 /* DataSources2.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB889252813943400F07FD4 /* DataSources2.swift */; };
+		FEB889282814078100F07FD4 /* DataSources3.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB889272814078100F07FD4 /* DataSources3.swift */; };
+		FEB8892A2814237B00F07FD4 /* DataSource4.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB889292814237B00F07FD4 /* DataSource4.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,9 @@
 		FE72A5A128124C6000361484 /* Cell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell3.swift; sourceTree = "<group>"; };
 		FE72A5A3281250F000361484 /* MagnetListSectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnetListSectionManager.swift; sourceTree = "<group>"; };
 		FE72A5A5281252ED00361484 /* MagnetMenuHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnetMenuHeaderCell.swift; sourceTree = "<group>"; };
+		FEB889252813943400F07FD4 /* DataSources2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSources2.swift; sourceTree = "<group>"; };
+		FEB889272814078100F07FD4 /* DataSources3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSources3.swift; sourceTree = "<group>"; };
+		FEB889292814237B00F07FD4 /* DataSource4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource4.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,9 @@
 				FE72A586281249EE00361484 /* Info.plist */,
 				FE72A58C28124A1300361484 /* MainVC.swift */,
 				FE72A58E28124A6500361484 /* DataSources.swift */,
+				FEB889252813943400F07FD4 /* DataSources2.swift */,
+				FEB889272814078100F07FD4 /* DataSources3.swift */,
+				FEB889292814237B00F07FD4 /* DataSource4.swift */,
 				FE72A59D28124BA200361484 /* Cell1.swift */,
 				FE72A59F28124C4800361484 /* Cell2.swift */,
 				FE72A5A128124C6000361484 /* Cell3.swift */,
@@ -181,8 +190,11 @@
 				FE72A5A4281250F000361484 /* MagnetListSectionManager.swift in Sources */,
 				FE72A5A028124C4800361484 /* Cell2.swift in Sources */,
 				FE72A59E28124BA200361484 /* Cell1.swift in Sources */,
+				FEB8892A2814237B00F07FD4 /* DataSource4.swift in Sources */,
 				FE72A579281249ED00361484 /* AppDelegate.swift in Sources */,
 				FE72A5A6281252ED00361484 /* MagnetMenuHeaderCell.swift in Sources */,
+				FEB889282814078100F07FD4 /* DataSources3.swift in Sources */,
+				FEB889262813943400F07FD4 /* DataSources2.swift in Sources */,
 				FE72A58D28124A1300361484 /* MainVC.swift in Sources */,
 				FE3D0F152812E0FD00A7010B /* BlankHeaderCell.swift in Sources */,
 				FE72A58F28124A6500361484 /* DataSources.swift in Sources */,

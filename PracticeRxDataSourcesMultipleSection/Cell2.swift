@@ -10,6 +10,7 @@ import UIKit
 class Cell2: UICollectionViewCell {
     static let identifier = "Cell2"
     let titleLabel = UILabel()
+    let nameTag = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,8 +23,12 @@ class Cell2: UICollectionViewCell {
     }
     
     private func attribute() {
-        self.backgroundColor = .green
+        self.backgroundColor = .blue
         self.titleLabel.textColor = .white
+        self.nameTag.text = "Cell 2"
+        self.nameTag.backgroundColor = .darkGray
+        self.nameTag.font = .systemFont(ofSize: 15)
+        self.nameTag.textColor = .white
     }
     
     func setTitle(title: String) {
@@ -31,8 +36,12 @@ class Cell2: UICollectionViewCell {
     }
     
     private func layout() {
-        [titleLabel].forEach {
+        [nameTag, titleLabel].forEach {
             self.addSubview($0)
+        }
+        
+        nameTag.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {

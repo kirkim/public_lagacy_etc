@@ -12,7 +12,7 @@ import RxSwift
 
 class MainVC: UIViewController {
     let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-    let viewModel = MainViewModel()
+    let viewModel = MainViewModel4()
     let disposeBag = DisposeBag()
     let sectionManager = MagnetListSectionManager()
     
@@ -21,6 +21,7 @@ class MainVC: UIViewController {
         attribute()
         layout()
         bind()
+        test()
     }
     
     required init?(coder: NSCoder) {
@@ -52,5 +53,47 @@ class MainVC: UIViewController {
         }
     }
     
+    func test() {
+        //
+        struct Student {
+            var score: BehaviorSubject<Int>
+        }
+        
+        
+        let disposeBag = DisposeBag()
+        
+        // 1
+        let ryan = Student(score: BehaviorSubject(value: 80))
+        let charlotte = Student(score: BehaviorSubject(value: 90))
+        
+        // 2
+        let student = PublishSubject<Student>()
+        
+        // 3
+        student
+            .flatMap{
+                $0.score
+            }
+        // 4
+            .subscribe(onNext: {
+                print($0)
+            })
+            .disposed(by: disposeBag)
+        
+        // 5
+        student.onNext(ryan)    // Print: 80
+        
+        // 6
+        ryan.score.onNext(85)   // Print: 80 85
+        
+        // 7
+        student.onNext(charlotte)   // Print: 80 85 90
+        
+        // 8
+        ryan.score.onNext(95)   // Print: 80 85 90 95
+        
+        // 9
+        charlotte.score.onNext(100) // Print: 80 85 90 95 100
+    }
     
 }

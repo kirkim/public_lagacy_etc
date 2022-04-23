@@ -10,6 +10,7 @@ import UIKit
 
 class MagnetMenuHeaderCell: UICollectionReusableView {
     static let identifier = "MagnetMenuHeaderCell"
+    private let nameTag = UILabel()
     private let titleLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -24,6 +25,9 @@ class MagnetMenuHeaderCell: UICollectionReusableView {
     
     func setData(title: String) {
         self.titleLabel.text = title
+        self.nameTag.text = "Header 1"
+        self.nameTag.textColor = .white
+        self.nameTag.backgroundColor = .black
     }
     
     private func attribute() {
@@ -32,11 +36,16 @@ class MagnetMenuHeaderCell: UICollectionReusableView {
     }
     
     private func layout() {
-        self.addSubview(self.titleLabel)
+        [nameTag, titleLabel].forEach {
+            self.addSubview($0)
+        }
+        nameTag.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
+        }
         
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalTo(nameTag.snp.trailing).offset(50)
         }
     }
 }

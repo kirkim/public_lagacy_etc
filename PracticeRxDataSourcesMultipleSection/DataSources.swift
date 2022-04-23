@@ -8,43 +8,47 @@
 import UIKit
 import RxDataSources
 
-enum SectionModel {
-  case SectionOne(items: [SectionItem])
-  case SectionTwo(items: [SectionItem])
-    case SectionThree(header: String, items: [SectionItem])
+enum Sex {
+    case male
+    case female
 }
 
 struct Person {
     var name: String
+    var sex: Sex
     var age: Int
+}
+
+struct HasSubTitle {
+    var title: String
+    var subTitle: String
+}
+
+enum SectionModel {
+    case SectionOne(items: [SectionItem])
+    case SectionTwo(items: [SectionItem])
+    case SectionThree(header: String, items: [SectionItem])
 }
 
 enum SectionItem {
     case StatusOne(s: Person)
     case StatusTwo(a: Int)
-    case StatusThree(k: Int)
+    case StatusThree(k: HasSubTitle)
 }
 
 extension SectionModel: SectionModelType {
-    init(original: SectionModel, items: [SectionItem]) {
-        switch  original {
-        case .SectionOne(items: let items):
-            self = .SectionOne(items: items)
-        case .SectionTwo(items: let items):
-            self = .SectionTwo(items: items)
-        case .SectionThree(header: let header, items: let items):
-            self = .SectionThree(header: header, items: items)
-        }
-    }
+    typealias Item = SectionItem
     
-  typealias Item = SectionItem
+    init(original: SectionModel, items: [SectionItem]) {
+        self = original
+    }
 
-    var headers: String {
+    var headers: String? {
         switch self {
         case .SectionThree(header: let header, items: _):
             return header
         default:
-            return ""
+            return nil
         }
     }
     
@@ -53,45 +57,37 @@ extension SectionModel: SectionModelType {
       case .SectionOne(items: let items):
           return items
       case .SectionTwo(items: let items):
-          return items.map { $0 }
-      case.SectionThree(let header, let items):
-          return items.map { $0 }
-      }
-  }
-    
-  init(original: SectionModel) {
-      switch  original {
-      case .SectionOne(items: let items):
-          self = .SectionOne(items: items)
-      case .SectionTwo(items: let items):
-          self = .SectionTwo(items: items)
-      case .SectionThree(header: let headerr, items: let itemss):
-          print(headerr)
-          self = .SectionThree(header: headerr, items: itemss)
+          return items
+      case.SectionThree(_, let items):
+          return items
       }
   }
 }
 
 struct MainViewModel {
     let data = [
-        SectionModel(original: SectionModel.SectionOne(items: [
-            SectionItem.StatusOne(s: Person(name: "kk", age: 1)),
-            SectionItem.StatusOne(s: Person(name: "kks", age: 21)),
-            SectionItem.StatusOne(s: Person(name: "kdk", age: 31)),
-            SectionItem.StatusOne(s: Person(name: "ksfk", age: 11)),
-            SectionItem.StatusOne(s: Person(name: "ksdk", age: 41))
-        ])
-        ),
-        SectionModel(original: SectionModel.SectionTwo(items: [
-            SectionItem.StatusTwo(a: 1),
-            SectionItem.StatusThree(k: 2),
-            SectionItem.StatusTwo(a: 3),
-            SectionItem.StatusTwo(a: 4)
-        ])),
-        SectionModel(original: SectionModel.SectionThree(header: "ssee", items: [
-            SectionItem.StatusThree(k: 1),
-            SectionItem.StatusThree(k: 2),
-        ])),
+        SectionModel.SectionOne(
+            items: [
+                SectionItem.StatusOne(s: Person(name: "손흥민", sex: .male, age: 29)),
+                SectionItem.StatusOne(s: Person(name: "로제", sex: .female, age: 21)),
+                SectionItem.StatusTwo(a: 4),
+                SectionItem.StatusOne(s: Person(name: "박지성", sex: .male , age: 31)),
+                SectionItem.StatusOne(s: Person(name: "지수", sex: .female , age: 11)),
+            ]),
+        SectionModel.SectionTwo(
+            items: [
+                SectionItem.StatusTwo(a: 1),
+                SectionItem.StatusThree(k: HasSubTitle(title: "제목!!", subTitle: "서브제목!!")),
+                SectionItem.StatusOne(s: Person(name: "박지성", sex: .male , age: 31)),
+                SectionItem.StatusTwo(a: 3),
+                SectionItem.StatusTwo(a: 4)
+            ]),
+        SectionModel.SectionThree(
+            header: "ssee",
+            items: [
+                SectionItem.StatusThree(k: HasSubTitle(title: "제목+_+", subTitle: "서브제목+_+")),
+                SectionItem.StatusThree(k: HasSubTitle(title: "제목", subTitle: "서브제목")),
+            ]),
     ]
     
     
@@ -100,7 +96,7 @@ struct MainViewModel {
             switch datasource[indexPath] {
             case .StatusOne(let item):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell1.identifier, for: indexPath) as! Cell1
-                cell.setTitle(title: item.name)
+                cell.setTitle(person: item)
                 return cell
             case .StatusTwo(let item):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell2.identifier, for: indexPath) as! Cell2
@@ -108,27 +104,22 @@ struct MainViewModel {
                 return cell
             case .StatusThree(let item):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cell3.identifier, for: indexPath) as! Cell3
-                cell.setTitle(title: String(item))
+                cell.setTitle(item: item)
                 return cell
             }
         })
         
         dataSource.configureSupplementaryView = {(dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
             switch dataSource[indexPath.section] {
-            case .SectionThree(header: let headerr, items: let items):
+            case .SectionThree(header: let headerValue, _):
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MagnetMenuHeaderCell.identifier, for: indexPath) as! MagnetMenuHeaderCell
-                print("s1", headerr)
-                print("s2", items[0])
-                header.setData(title: "내가 헤더")
+                header.setData(title: headerValue)
                 return header
             default:
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BlankHeaderCell.identifier, for: indexPath)
-
                 return header
-
             }
         }
-
         return dataSource
     }
 }

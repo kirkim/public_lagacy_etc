@@ -10,7 +10,10 @@ import SnapKit
 
 class Cell1: UICollectionViewCell {
     static let identifier = "Cell1"
-    let titleLabel = UILabel()
+    let nameLabel = UILabel()
+    let sexLabel = UILabel()
+    let ageLabel = UILabel()
+    let nameTag = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,20 +27,41 @@ class Cell1: UICollectionViewCell {
     
     private func attribute() {
         self.backgroundColor = .red
-        self.titleLabel.textColor = .white
+        [nameLabel, sexLabel, ageLabel].forEach {
+            $0.textColor = .white
+        }
+        self.nameTag.text = "Cell 1"
+        self.nameTag.backgroundColor = .darkGray
+        self.nameTag.font = .systemFont(ofSize: 15)
+        self.nameTag.textColor = .white
     }
     
-    func setTitle(title: String) {
-        self.titleLabel.text = title
+    func setTitle(person: Person) {
+        self.nameLabel.text = person.name
+        self.sexLabel.text = person.sex == .male ? "남" : "여"
+        self.ageLabel.text = "\(person.age)살"
     }
     
     private func layout() {
-        [titleLabel].forEach {
+        [nameTag, nameLabel, sexLabel, ageLabel].forEach {
             self.addSubview($0)
         }
         
-        titleLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+        nameTag.snp.makeConstraints {
+            $0.top.leading.equalToSuperview()
+        }
+        
+        nameLabel.snp.makeConstraints {
+            $0.leading.equalTo(nameTag.snp.trailing).offset(30)
+        }
+        
+        sexLabel.snp.makeConstraints {
+            $0.leading.equalTo(nameLabel.snp.trailing).offset(25)
+        }
+        
+        ageLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 }
