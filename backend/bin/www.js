@@ -4,9 +4,13 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('backend:server');
-var http = require('http');
+import app from '../build/server.js';
+import debug from 'debug';
+debug.debug('matri-site:server');
+import http from 'http';
+// var app = require('../build/server');
+// var debug = require('debug')('backend:server');
+// var http = require('http');
 
 /**
  * Get port from environment and store in Express.
