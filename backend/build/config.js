@@ -3,7 +3,6 @@ import path from 'path';
 dotenv.config();
 function required(key, defaultValue) {
     const value = process.env[key] || defaultValue;
-    console.log(value, process.env.PORT);
     if (value == null) {
         throw new Error(`${key} is undefined`);
     }
@@ -12,6 +11,7 @@ function required(key, defaultValue) {
 const config = {
     host: {
         port: Number(required('HOST_PORT', 8080)),
+        url: 'https://kirkim.com',
     },
     bcrypt: {
         saltRounds: parseInt(required('BCRTPY_SALT_ROUNDS', 10)),

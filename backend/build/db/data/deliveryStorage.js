@@ -3,7 +3,7 @@ import config from '../../config.js';
 import { storeCodes } from './storeCodes.js';
 export let storeData;
 let mainUrl = config.static.url + '/delivery';
-let hostUrl = config.server.baseUrl + '/delivery';
+let hostUrl = config.host.url + '/delivery';
 function updateData(storeCodes) {
     let storeBundle = [];
     storeCodes.forEach((storeCode) => {

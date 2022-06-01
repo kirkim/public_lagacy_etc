@@ -5,7 +5,7 @@ import { getRandomUser } from '../userData.js';
 import { randomNumberArray } from './deliveryStorage.js';
 import { storeCodes } from './storeCodes.js';
 let mainUrl = config.static.url + '/delivery';
-let hostUrl = config.server.baseUrl + '/delivery';
+let hostUrl = config.host.url + '/delivery';
 export let reviewData;
 function updateReviewData(storeCodes) {
     let storeBundle = [];

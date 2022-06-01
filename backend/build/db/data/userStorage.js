@@ -17,4 +17,13 @@ export let userDatas = [
         },
         likeStores: ['4', '5', '6'],
     },
+    {
+        id: '3',
+        data: {
+            userID: 'kirkim',
+            password: '$2b$12$onO6FjcLQx4ZHlpMgwzHg.2yAT9b6Jgde3ul6Jgr2CsUTza1JTqpm',
+            name: '기림',
+        },
+        likeStores: ['7', '8', '9'],
+    },
 ];
