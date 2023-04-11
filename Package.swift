@@ -46,17 +46,10 @@ let package = Package(
         targets: ["CalendarControl"]
     )
   ],
-//  targets: [
-//    .binaryTarget(
-//        name: "CalendarControl",
-//        path: "./Sources/CalendarControl.xcframework"
-//    )
-//  ]
   targets: [
     .binaryTarget(
-      name: "CalendarControl",
-      url: "CalendarControl.xcframework.zip",
-      checksum: "d47488418bdc98ca5e44c4bdb5dde33da3eb20fb476fdf90e5a03640eaa75e21")
+        name: "CalendarControl",
+        path: "./Sources/CalendarControl.xcframework"
+    )
   ]
-
 )
