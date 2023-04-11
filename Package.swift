@@ -55,7 +55,7 @@ let package = Package(
   targets: [
     .binaryTarget(
       name: "CalendarControl",
-      url: "https://example.com/CalendarControl.xcframework.zip",
+      url: "CalendarControl.xcframework.zip",
       checksum: "d47488418bdc98ca5e44c4bdb5dde33da3eb20fb476fdf90e5a03640eaa75e21")
   ]
 
