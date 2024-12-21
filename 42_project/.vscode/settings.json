@@ -1,0 +1,30 @@
+{
+	"files.associations": {
+		"cub3d.h": "c",
+		"chrono": "c",
+		"__split_buffer": "c",
+		"algorithm": "c",
+		"functional": "c",
+		"iterator": "c",
+		"locale": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"vector": "c",
+		"math.h": "c",
+		"__locale": "c",
+		"mlx.h": "c",
+		"__bit_reference": "c",
+		"__functional_base": "c",
+		"__node_handle": "c",
+		"atomic": "c",
+		"bitset": "c",
+		"__memory": "c",
+		"limits": "c",
+		"memory": "c",
+		"optional": "c",
+		"ratio": "c",
+		"system_error": "c",
+		"tuple": "c",
+		"type_traits": "c"
+	}
+}
