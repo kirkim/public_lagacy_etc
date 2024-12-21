@@ -1,0 +1,12 @@
+mixin video(video)
+	div
+		h4
+			a(href=`/movies/${video.id}`)=video.title
+		ul
+			p=video.summary
+			small year: #{video.year}
+			p rating: #{video.rating}
+			ul
+				each genre in video.genres
+					li=genre
+			hr

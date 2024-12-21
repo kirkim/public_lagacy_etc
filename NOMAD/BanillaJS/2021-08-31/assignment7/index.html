@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css" />
+	<script src="app.js" defer></script>
+	<title>assignment7</title>
+</head>
+<body>
+	<div class="line"></div>
+	<h1>Random Number Game</h1>
+	<form class="form">
+	<h3>Generate a number between 0 and <input class="inputRange ipt" type="number" min=0 /></h3>
+	<div>Guess the number: <input class="inputChose ipt" type="number" min=0 /><input class="playBtn" type="submit" value="Play!"></div>
+	</form>
+	<div id ="out" class="hidden">
+		<div>You chose: <span class="youchose"></span>, the machine chose: <span class="machinechose"></span>.</div>
+		<div class="result"></div>
+	</div>
+</body>
+</html>

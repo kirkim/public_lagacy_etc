@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+	h1=pageTitle
+	form(method="POST", action="/read", enctype="multipart/form-data")
+		input(type="file", name="text", required, accept="text/*")
+		input(type="submit", value="Convert!")
+	hr
+	h3 &lt;File list&gt;
+	ol
+		each file in files
+			li
+				a(href=`/read/${file}`)=file

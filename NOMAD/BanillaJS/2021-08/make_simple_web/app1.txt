@@ -1,0 +1,40 @@
+const aa = document.querySelectorAll(".hello");
+
+for(let i = 0; i < aa.length; i++)
+{
+	function mouseEnterFunc() {
+		aa[i].style.color = "#"+(parseInt(Math.random()*0xffffff)).toString(16);
+		aa[i].style.fontSize = "50px";
+		aa[i].innerText = "Hello Mouse!";
+	}
+
+	function mouseLeaveFunc() {
+		aa[i].style.color = "#"+(parseInt(Math.random()*0xffffff)).toString(16);
+		aa[i].style.fontSize = "20px";
+		aa[i].innerText = "Bye Mouse!";
+	}
+
+	aa[i].addEventListener("mouseenter", mouseEnterFunc);
+	aa[i].addEventListener("mouseleave", mouseLeaveFunc);
+}
+
+function handleWindowResize() {
+	document.body.style.backgroundColor = "tomato";
+}
+
+function handleWindowCopy() {
+	alert("copier!");
+}
+
+function handleWindowOffline() {
+	alert("SOS no WIFI");
+}
+
+function handleWindowOnline() {
+	alert("ALL GOOOD!");
+}
+
+window.addEventListener("resize", handleWindowResize);
+window.addEventListener("copy", handleWindowCopy);
+window.addEventListener("offline", handleWindowOffline);
+window.addEventListener("online", handleWindowOnline);

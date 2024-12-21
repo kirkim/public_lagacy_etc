@@ -1,0 +1,14 @@
+extends ./templates/layout.pug
+
+block content
+	h1=pageTitle
+	if errorMessage
+		span=errorMessage
+	form(method="POST")
+		input(placeholder="Username", type="text", required, name="username")
+		input(placeholder="Password", type="password", required, name="password")
+		input(type="submit", value="Login")
+	hr
+	div
+		span Don't have an account?&nbsp;
+		a(href="/join") Create one now &rarr;

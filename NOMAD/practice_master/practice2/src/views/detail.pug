@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+	img(src=movies.medium_cover_image)
+	p
+		span &#91;<b>year:</b> #{movies.year}, <b>rating:</b> #{movies.rating}&#93;
+	p
+		h3 &lt;Summary&gt;
+		span=movies.summary
+	p
+		h3 &lt;Genres&gt;
+		ul
+			each genre in movies.genres
+				li=genre

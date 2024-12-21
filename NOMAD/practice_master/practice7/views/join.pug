@@ -1,0 +1,12 @@
+extends ./templates/layout.pug
+
+block content
+	h1=pageTitle
+	if errorMessage
+		span=errorMessage
+	form(method="POST")
+		input(placeholder="Username", type="text", required, name="username")
+		input(placeholder="Name", type="text", required, name="name")
+		input(placeholder="Password", type="password", required, name="password")
+		input(placeholder="Confirm password", type="password", required, name="password2")
+		input(type="submit", value="Join")

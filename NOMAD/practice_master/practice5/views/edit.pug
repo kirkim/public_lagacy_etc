@@ -1,0 +1,11 @@
+extends layout.pug
+
+block content
+	h4 Update Movie
+	form(method="POST")
+		input(placeholder="Title", required, type="text", name="title")
+		input(placeholder="Summary", required, type="text", name="summary")
+		input(placeholder="Year", required, type="text", name="year")
+		input(placeholder="Rating", required, type="text", name="rating")
+		input(placeholder="Genres, separated by comma.", required, type="text", name="genres",)
+		input(type="submit", value="Update Movie")

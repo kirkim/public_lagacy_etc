@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+	form(method="GET")
+		input(placeholder="title", type="text", name="keyword")
+		input(type="submit", value="Search")
+
+	ol
+		each video in videos
+			li
+				a(href=`/videos/${video.id}`)=video.title
+		else
+			h4
+				Sorry nothing found.

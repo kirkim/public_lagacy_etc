@@ -1,0 +1,4 @@
+.hidden {
+  display: none;
+  transition: display ease 2s 0s;
+}

@@ -1,0 +1,15 @@
+extends layout.pug
+
+block content
+	h1 Home!
+	hr
+	if posts
+		ul
+			each post in posts
+				li
+					b 제목: #{post.title}&nbsp;
+					span(style="font-size:85%") 작성자 - #{post.user.name}
+					br
+					span 내용: #{post.content}
+	else
+		h3 No Content!

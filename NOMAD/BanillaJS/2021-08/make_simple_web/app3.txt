@@ -1,0 +1,35 @@
+/*
+const aa = document.querySelector(".hello");
+
+function handleTitleClick() {
+	const clickedClass = "clicked"
+	if(aa.className === clickedClass) {
+		aa.className = "";
+	} else {
+		aa.className = clickedClass;
+	}
+}
+
+aa.addEventListener("click", handleTitleClick);
+*/
+/*
+const aa = document.querySelector(".hello");
+
+function handleTitleClick() {
+	const clickedClass = "clicked"
+	if(aa.classList.contains(clickedClass)) {
+		aa.classList.remove(clickedClass);
+	} else {
+		aa.classList.add(clickedClass);
+	}
+}
+
+aa.addEventListener("click", handleTitleClick);
+*/
+const aa = document.querySelector(".hello");
+
+function handleTitleClick() {
+	aa.classList.toggle("clicked");
+}
+
+aa.addEventListener("click", handleTitleClick);
