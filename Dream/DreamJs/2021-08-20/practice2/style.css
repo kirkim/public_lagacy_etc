@@ -1,0 +1,12 @@
+.hidden {
+  display: none;
+}
+
+body {
+  width: 70vw;
+  height: 50vh;
+}
+
+.mainSite {
+  flex-direction: column;
+}

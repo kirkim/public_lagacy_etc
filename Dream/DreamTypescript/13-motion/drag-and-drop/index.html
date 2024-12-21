@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="app.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="page-header">
+        <h1>Drag &amp; Drop</h1>
+        <p class="lead">
+          An experiment utilising HTML5's native drag &amp; drop API to create
+          draggable cards.
+        </p>
+      </header>
+      <div class="row">
+        <main class="col-sm-12 col-md-8">
+          <div class="row">
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="harleydavidson"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Harley Davidson <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    An American motorcycle manufacturer, founded in Milwaukee,
+                    Wisconsin in 1903.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="triumph"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Triumph <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    The largest British motorcycle manufacturer; it was
+                    established in 1984.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="norton"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Norton <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    A British motorcycle marque, originally from Birmingham, UK.
+                    It was founded in 1898
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="bsa"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    BSA <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    A British motorcycle manufacturer with military origins.
+                    Founded in 1978.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="indian"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Indian <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    An American brand of motorcycles originally produced from
+                    1901 to 1953.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="victory"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Victory <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    An American motorcycle manufacturer from Iowa that began
+                    production in 1998.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="ducati"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Ducati <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    An Italian motorcycle company founded 90 years ago in 1926
+                    by the Ducati family.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="motoguzzi"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Moto Guzzi <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    The oldest European manufacturer of motorcycles started
+                    production in 1921.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div
+                class="panel panel-default"
+                id="yamaha"
+                draggable="true"
+                ondragstart="return dragStart(event)"
+              >
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    Yamaha <i class="fa fa-times-circle"></i>
+                  </h2>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    A popular Japanese motorcycle manufacturer based in Shizuoka
+                    since 1955.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <aside class="col-sm-12 col-md-4">
+          <h2>Your Selection</h2>
+          <div
+            class="dropzone"
+            id="dropzone"
+            ondragenter="return dragEnter(event)"
+            ondrop="return dragDrop(event)"
+            ondragover="return dragOver(event)"
+          ></div>
+        </aside>
+      </div>
+    </div>
+  </body>
+</html>

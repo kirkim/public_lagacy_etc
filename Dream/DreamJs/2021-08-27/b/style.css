@@ -1,0 +1,15 @@
+body {
+  background-color: black;
+}
+
+.basicBox {
+  margin: 5px;
+  width: 150px;
+  height: 150px;
+  background-color: bisque;
+}
+
+.specialBox {
+  background-color: blueviolet;
+  cursor: pointer;
+}

@@ -1,0 +1,22 @@
+.main__content {
+  background-color: white;
+  width: 90%;
+  display: flex;
+  position: relative;
+  margin-top: 20px;
+  top: 30px;
+  left: 5%;
+}
+.main__content img {
+}
+
+.main__content .content {
+  padding: 10px;
+}
+
+.delete__content {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
