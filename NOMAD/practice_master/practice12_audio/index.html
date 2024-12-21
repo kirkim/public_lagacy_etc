@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Player</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/6ade36b36a.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script defer type="module" src="index.js"></script>
+  </head>
+
+  <body>
+    <button id="recordBtn">Start Recording</button>
+    <button id="downloadBtn" class="hidden">Download</button>
+    <audio id="preview"></audio>
+    <div class="record__time">
+      <b>Record Time: </b>
+      <span id="viewTime">00:00:0</span>
+    </div>
+    <div id="viewRecord" class="pre">
+      <div>Preview Record</div>
+    </div>
+  </body>
+</html>

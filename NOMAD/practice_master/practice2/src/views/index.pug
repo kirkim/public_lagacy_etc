@@ -1,0 +1,13 @@
+extends layout.pug
+include mixins/movie.pug
+
+block content
+	form(action="filter" method="GET")
+		input(placeholder="Filter by year", type="text", name="year")
+		input(placeholder="Filter by rating", type="text", name="rating")
+		input(type="submit", required, value="Upload Video")
+	each movie in movies
+		+movie(movie)
+	else
+		span Sorry nothing found.
+	include partials/footer.pug

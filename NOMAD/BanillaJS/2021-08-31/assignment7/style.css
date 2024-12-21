@@ -1,0 +1,31 @@
+.line {
+  width: 100%;
+  height: 25px;
+  background-color: black;
+}
+
+.result {
+  font-weight: bold;
+}
+
+.playBtn {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.ipt {
+  width: 200px;
+  margin-right: 5px;
+}
+
+input[type="number"] {
+  font-size: 14px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
